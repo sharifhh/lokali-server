@@ -2,7 +2,7 @@ import React from "react";
 
 const LandingPage = (props) => {
   return (
-    <>
+    <> 
       <ul class="nav d-flex justify-content-end">
         <li class="nav-item pr-3">
           <button type="button" class="btn btn-primary">
