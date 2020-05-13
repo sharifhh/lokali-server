@@ -6,7 +6,7 @@
   <a href="https://twitter.com/ReactStarter"><img src="https://img.shields.io/twitter/follow/ReactStarter.svg?style=social&amp;label=Follow&amp;maxAge=3600" alt="Twitter" height="20"></a>
   <a href="https://discord.gg/2nKEnKq"><img src="https://img.shields.io/badge/chat-Discord-green.svg?style=social&amp;maxAge=3600" height="20"></a>
 </h1>
-
+ 
 **React Starter Kit** _for Firebase_ is a popular project template (aka, boilerplate) for building
 modern, scalable web applications with React, Relay, and GraphQL using serverless infrastructure
 provided by <a href="https://cloud.google.com/">Google Cloud</a> (Cloud SQL, Cloud Functions, CDN
