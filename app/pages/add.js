@@ -1,10 +1,11 @@
 import React from "react";
 import Head from "../components/head";
-
+import Header from '../components/header'
 const AddOfferingPage = (props) => {
   return (
     <>
       <Head />
+      <Header />
       <div className="container-fluid">
         <div className="row">
           <div className="col">Your Lokali Events</div>
