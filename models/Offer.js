@@ -17,7 +17,7 @@ const OfferSchema = new Schema({
     required: true,
     default: "Development"
   },
-  createAt: {
+  createdAt: {
     type: Date,
     required: true,
     default: Date.now,
