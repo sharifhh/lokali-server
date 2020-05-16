@@ -9,6 +9,11 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Modal from "@material-ui/core/Modal";
 import axios from "axios";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
 
 export default () => {
   const [formState, setFormState] = useState({
@@ -24,12 +29,12 @@ export default () => {
     setFormState({ ...formState, [key]: value });
   };
 
-  const config = { proxy: { host: "127.0.0.1", port: 4000 } };
+  // const config = { proxy: { host: "127.0.0.1", port: 4000 } };
 
   const submitForm = () => {
     console.log("formState", formState);
     axios
-      .post(`/api/posts/${formState.type}s`, formState, config)
+      .post(`http://localhost:4000/api/posts/${formState.type}s`, formState)
       .then((data) => {
         console.log(data);
       })
@@ -137,6 +142,13 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 0, 3),
   },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
 }));
 
 function SimpleModal(props) {
@@ -178,10 +190,10 @@ function SimpleModal(props) {
           style={{
             ...modalStyle,
             backgroundColor:
-              (state.type === "offer" && "orange") ||
-              (state.type === "request" && "blue") ||
-              (state.type === "event" && "purple") ||
-              (state.type === "initiative" && "green") ||
+              (state.type === "offer" && "#fea53a") ||
+              (state.type === "request" && "#4a86e8") ||
+              (state.type === "event" && "#5e38c0") ||
+              (state.type === "initiative" && "#48a320") ||
               "white",
           }}
         >
@@ -193,17 +205,24 @@ function SimpleModal(props) {
                 justifyContent: "space-between",
               }}
             >
-              <div>Choose One of the following post types:{""}</div>
-              <div style={{ marginRight: "1rem" }}>
-                <select
-                  onChange={(e) => handleInputChange("type", e.target.value)}
-                >
-                  <option>Select Type</option>
-                  <option value={"offer"}>Offer Post</option>
-                  <option value={"request"}>Request Post</option>
-                  <option value={"event"}>Event Post</option>
-                  <option value={"initiative"}>Initiative Post</option>
-                </select>
+              <div>
+                <p>Choose One of the following post types:</p>
+              </div>
+              <div>
+                <FormControl className={classes.formControl}>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={state.type}
+                    onChange={(e) => handleInputChange("type", e.target.value)}
+                  >
+                    <MenuItem value={"Select Type"}>Select Type</MenuItem>
+                    <MenuItem value={"offer"}>Offer Post</MenuItem>
+                    <MenuItem value={"request"}>Request Post</MenuItem>
+                    <MenuItem value={"event"}>Event Post</MenuItem>
+                    <MenuItem value={"initiative"}>Initiative Post</MenuItem>
+                  </Select>
+                </FormControl>
               </div>
             </div>
             {(state.type === "Select Type" && (
@@ -241,14 +260,24 @@ function SimpleModal(props) {
                         justifyContent: "space-between",
                       }}
                     >
-                      <div>Offer Title</div>
                       <div>
-                        <input
+                        <p>Offer Title</p>
+                      </div>
+                      <div>
+                        <TextField
                           onChange={(e) =>
                             handleInputChange("title", e.target.value)
                           }
                           value={state.title}
+                          id="outlined-basic"
+                          variant="outlined"
                         />
+                        {/* <input
+                          onChange={(e) =>
+                            handleInputChange("title", e.target.value)
+                          }
+                          value={state.title}
+                        /> */}
                       </div>
                     </div>
 
@@ -258,61 +287,35 @@ function SimpleModal(props) {
                         justifyContent: "space-between",
                       }}
                     >
-                      <div>Offer Type</div>
                       <div>
-                        <select
-                          onChange={(e) =>
-                            handleInputChange("offerType", e.target.value)
-                          }
-                        >
-                          <option>Select Type</option>
-                          <option value={"offer"}>Offer Post</option>
-                          <option value={"request"}>Request Post</option>
-                          <option value={"event"}>Event Post</option>
-                          <option value={"initiative"}>Initiative Post</option>
-                        </select>
+                        <p>Location</p>
                       </div>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div>Offer Category</div>
                       <div>
-                        <select
-                          onChange={(e) =>
-                            handleInputChange("offerCategory", e.target.value)
-                          }
-                        >
-                          <option>Select Type</option>
-                          <option value={"offer"}>Offer Post</option>
-                          <option value={"request"}>Request Post</option>
-                          <option value={"event"}>Event Post</option>
-                          <option value={"initiative"}>Initiative Post</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div>Location</div>
-                      <div>
-                        <select
+                        {/* <FormControl className={classes.formControl}>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={state.type}
+                            onChange={(e) =>
+                              handleInputChange("type", e.target.value)
+                            }
+                          >
+                            <MenuItem value={"offer"}>Offer Post</MenuItem>
+                            <MenuItem value={"request"}>Request Post</MenuItem>
+                            <MenuItem value={"event"}>Event Post</MenuItem>
+                            <MenuItem value={"initiative"}>
+                              Initiative Post
+                            </MenuItem>
+                          </Select>
+                        </FormControl> */}
+                        <TextField
                           onChange={(e) =>
                             handleInputChange("location", e.target.value)
                           }
-                        >
-                          <option>Select Type</option>
-                          <option value={"offer"}>Offer Post</option>
-                          <option value={"request"}>Request Post</option>
-                          <option value={"event"}>Event Post</option>
-                          <option value={"initiative"}>Initiative Post</option>
-                        </select>
+                          value={state.location}
+                          id="outlined-basic"
+                          variant="outlined"
+                        />
                       </div>
                     </div>
                     <div
@@ -321,9 +324,62 @@ function SimpleModal(props) {
                         justifyContent: "space-between",
                       }}
                     >
-                      <div>Offer Description</div>
                       <div>
-                        <textarea
+                        <p>Offer Category</p>
+                      </div>
+                      <div>
+                        <FormControl className={classes.formControl}>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={state.type}
+                            onChange={(e) =>
+                              handleInputChange("type", e.target.value)
+                            }
+                          >
+                            <MenuItem value={"offer"}>Offer Post</MenuItem>
+                            <MenuItem value={"request"}>Request Post</MenuItem>
+                            <MenuItem value={"event"}>Event Post</MenuItem>
+                            <MenuItem value={"initiative"}>
+                              Initiative Post
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                        {/* <TextField
+                          onChange={(e) =>
+                            handleInputChange("title", e.target.value)
+                          }
+                          value={state.title}
+                          id="outlined-basic"
+                          variant="outlined"
+                        /> */}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Description</p>
+                      </div>
+                      <div>
+                        <TextField
+                          id="outlined-multiline-static"
+                          multiline
+                          rows={8}
+                          placeholder={
+                            "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
+                          }
+                          variant="outlined"
+                          text={state.description}
+                          onChange={(e) =>
+                            handleInputChange("description", e.target.value)
+                          }
+                        />
+                        {/* <textarea
                           placeholder={
                             "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
                           }
@@ -331,7 +387,436 @@ function SimpleModal(props) {
                             handleInputChange("description", e.target.value)
                           }
                           text={state.description}
+                        /> */}
+                      </div>
+                    </div>
+                  </form>
+                </>
+              )) ||
+              (state.type === "request" && (
+                <>
+                  <form>
+                    <h2>Offer Post Details</h2>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Title</p>
+                      </div>
+                      <div>
+                        <TextField
+                          onChange={(e) =>
+                            handleInputChange("title", e.target.value)
+                          }
+                          value={state.title}
+                          id="outlined-basic"
+                          variant="outlined"
                         />
+                        {/* <input
+                      onChange={(e) =>
+                        handleInputChange("title", e.target.value)
+                      }
+                      value={state.title}
+                    /> */}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Location</p>
+                      </div>
+                      <div>
+                        {/* <FormControl className={classes.formControl}>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={state.type}
+                        onChange={(e) =>
+                          handleInputChange("type", e.target.value)
+                        }
+                      >
+                        <MenuItem value={"offer"}>Offer Post</MenuItem>
+                        <MenuItem value={"request"}>Request Post</MenuItem>
+                        <MenuItem value={"event"}>Event Post</MenuItem>
+                        <MenuItem value={"initiative"}>
+                          Initiative Post
+                        </MenuItem>
+                      </Select>
+                    </FormControl> */}
+                        <TextField
+                          onChange={(e) =>
+                            handleInputChange("location", e.target.value)
+                          }
+                          value={state.location}
+                          id="outlined-basic"
+                          variant="outlined"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Category</p>
+                      </div>
+                      <div>
+                        <FormControl className={classes.formControl}>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={state.type}
+                            onChange={(e) =>
+                              handleInputChange("type", e.target.value)
+                            }
+                          >
+                            <MenuItem value={"offer"}>Offer Post</MenuItem>
+                            <MenuItem value={"request"}>Request Post</MenuItem>
+                            <MenuItem value={"event"}>Event Post</MenuItem>
+                            <MenuItem value={"initiative"}>
+                              Initiative Post
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                        {/* <TextField
+                      onChange={(e) =>
+                        handleInputChange("title", e.target.value)
+                      }
+                      value={state.title}
+                      id="outlined-basic"
+                      variant="outlined"
+                    /> */}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Description</p>
+                      </div>
+                      <div>
+                        <TextField
+                          id="outlined-multiline-static"
+                          multiline
+                          rows={8}
+                          placeholder={
+                            "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
+                          }
+                          variant="outlined"
+                          text={state.description}
+                          onChange={(e) =>
+                            handleInputChange("description", e.target.value)
+                          }
+                        />
+                        {/* <textarea
+                      placeholder={
+                        "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
+                      }
+                      onChange={(e) =>
+                        handleInputChange("description", e.target.value)
+                      }
+                      text={state.description}
+                    /> */}
+                      </div>
+                    </div>
+                  </form>
+                </>
+              )) ||
+              (state.type === "event" && (
+                <>
+                  <form>
+                    <h2>Offer Post Details</h2>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Title</p>
+                      </div>
+                      <div>
+                        <TextField
+                          onChange={(e) =>
+                            handleInputChange("title", e.target.value)
+                          }
+                          value={state.title}
+                          id="outlined-basic"
+                          variant="outlined"
+                        />
+                        {/* <input
+                      onChange={(e) =>
+                        handleInputChange("title", e.target.value)
+                      }
+                      value={state.title}
+                    /> */}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Location</p>
+                      </div>
+                      <div>
+                        {/* <FormControl className={classes.formControl}>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={state.type}
+                        onChange={(e) =>
+                          handleInputChange("type", e.target.value)
+                        }
+                      >
+                        <MenuItem value={"offer"}>Offer Post</MenuItem>
+                        <MenuItem value={"request"}>Request Post</MenuItem>
+                        <MenuItem value={"event"}>Event Post</MenuItem>
+                        <MenuItem value={"initiative"}>
+                          Initiative Post
+                        </MenuItem>
+                      </Select>
+                    </FormControl> */}
+                        <TextField
+                          onChange={(e) =>
+                            handleInputChange("location", e.target.value)
+                          }
+                          value={state.location}
+                          id="outlined-basic"
+                          variant="outlined"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Category</p>
+                      </div>
+                      <div>
+                        <FormControl className={classes.formControl}>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={state.type}
+                            onChange={(e) =>
+                              handleInputChange("type", e.target.value)
+                            }
+                          >
+                            <MenuItem value={"offer"}>Offer Post</MenuItem>
+                            <MenuItem value={"request"}>Request Post</MenuItem>
+                            <MenuItem value={"event"}>Event Post</MenuItem>
+                            <MenuItem value={"initiative"}>
+                              Initiative Post
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                        {/* <TextField
+                      onChange={(e) =>
+                        handleInputChange("title", e.target.value)
+                      }
+                      value={state.title}
+                      id="outlined-basic"
+                      variant="outlined"
+                    /> */}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Description</p>
+                      </div>
+                      <div>
+                        <TextField
+                          id="outlined-multiline-static"
+                          multiline
+                          rows={8}
+                          placeholder={
+                            "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
+                          }
+                          variant="outlined"
+                          text={state.description}
+                          onChange={(e) =>
+                            handleInputChange("description", e.target.value)
+                          }
+                        />
+                        {/* <textarea
+                      placeholder={
+                        "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
+                      }
+                      onChange={(e) =>
+                        handleInputChange("description", e.target.value)
+                      }
+                      text={state.description}
+                    /> */}
+                      </div>
+                    </div>
+                  </form>
+                </>
+              )) ||
+              (state.type === "initiative" && (
+                <>
+                  <form>
+                    <h2>Offer Post Details</h2>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Title</p>
+                      </div>
+                      <div>
+                        <TextField
+                          onChange={(e) =>
+                            handleInputChange("title", e.target.value)
+                          }
+                          value={state.title}
+                          id="outlined-basic"
+                          variant="outlined"
+                        />
+                        {/* <input
+                      onChange={(e) =>
+                        handleInputChange("title", e.target.value)
+                      }
+                      value={state.title}
+                    /> */}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Location</p>
+                      </div>
+                      <div>
+                        {/* <FormControl className={classes.formControl}>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={state.type}
+                        onChange={(e) =>
+                          handleInputChange("type", e.target.value)
+                        }
+                      >
+                        <MenuItem value={"offer"}>Offer Post</MenuItem>
+                        <MenuItem value={"request"}>Request Post</MenuItem>
+                        <MenuItem value={"event"}>Event Post</MenuItem>
+                        <MenuItem value={"initiative"}>
+                          Initiative Post
+                        </MenuItem>
+                      </Select>
+                    </FormControl> */}
+                        <TextField
+                          onChange={(e) =>
+                            handleInputChange("location", e.target.value)
+                          }
+                          value={state.location}
+                          id="outlined-basic"
+                          variant="outlined"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Category</p>
+                      </div>
+                      <div>
+                        <FormControl className={classes.formControl}>
+                          <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={state.type}
+                            onChange={(e) =>
+                              handleInputChange("type", e.target.value)
+                            }
+                          >
+                            <MenuItem value={"offer"}>Offer Post</MenuItem>
+                            <MenuItem value={"request"}>Request Post</MenuItem>
+                            <MenuItem value={"event"}>Event Post</MenuItem>
+                            <MenuItem value={"initiative"}>
+                              Initiative Post
+                            </MenuItem>
+                          </Select>
+                        </FormControl>
+                        {/* <TextField
+                      onChange={(e) =>
+                        handleInputChange("title", e.target.value)
+                      }
+                      value={state.title}
+                      id="outlined-basic"
+                      variant="outlined"
+                    /> */}
+                      </div>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div>
+                        <p>Offer Description</p>
+                      </div>
+                      <div>
+                        <TextField
+                          id="outlined-multiline-static"
+                          multiline
+                          rows={8}
+                          placeholder={
+                            "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
+                          }
+                          variant="outlined"
+                          text={state.description}
+                          onChange={(e) =>
+                            handleInputChange("description", e.target.value)
+                          }
+                        />
+                        {/* <textarea
+                      placeholder={
+                        "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
+                      }
+                      onChange={(e) =>
+                        handleInputChange("description", e.target.value)
+                      }
+                      text={state.description}
+                    /> */}
                       </div>
                     </div>
                   </form>

@@ -96,7 +96,7 @@ const Nav = () => {
       }
       nav {
         text-align: center;
-        background-color: orange;
+        background-color: #fea53a;
       }
       ul {
         display: flex;
