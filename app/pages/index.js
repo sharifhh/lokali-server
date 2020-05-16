@@ -1,11 +1,19 @@
 import Link from 'next/link';
 import Head from '../components/head';
 import Nav from '../components/nav';
+import Login from './login'
+import  AuthContextProvider  from '../context/AuthContext';
+
+
 
 export default () => (
   <div>
-    <Head title="Home" />
-    <Nav />
+    <AuthContextProvider>
+
+      <Head title="Home" />
+      <Nav />
+      <Login/>
+    </AuthContextProvider>
     
     
 
