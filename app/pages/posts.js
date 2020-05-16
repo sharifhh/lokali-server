@@ -14,7 +14,10 @@ export default () => {
   const [formState, setFormState] = useState({
     type: "Select Type",
     title: "",
-    details: "",
+    description: "",
+    category: "",
+    location: "",
+    author: "Development"
   });
 
   const handleInputChange = (key, value) => {
@@ -95,25 +98,23 @@ const SimpleContainer = ({ children }) => {
   );
 };
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  //   const top = 50 + rand();
+  //   const left = 50 + rand();
 
   return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    position: "absolute",
+    left: "50%",
+    marginLeft: "-200px",
+    top: "50%",
+    marginTop: "-300px",
   };
 }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: "absolute",
-    width: 400,
+    width: 500,
     backgroundColor: "white",
     border: "2px solid #000",
     borderRadius: "10px",
@@ -139,7 +140,7 @@ function SimpleModal(props) {
   };
 
   const submitForm = () => {
-    axios.post(`/api/posts/${state.type}`, state).then((err, data) => {
+    axios.post(`/api/posts/${state.type}s`, state).then((err, data) => {
       if (err) {
         throw err;
       }
@@ -152,9 +153,16 @@ function SimpleModal(props) {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: "#eee",
+        display: "flex",
+        justifyContent: "space-between",
+      }}
+    >
+      <input placeholder={"Enter the Action Title Here"} />
       <Button type="button" onClick={handleOpen}>
-        Open Modal
+        Create New Post
       </Button>
       <Modal
         open={open}
@@ -164,7 +172,8 @@ function SimpleModal(props) {
       >
         <div
           className={classes.paper}
-          style={{  ...modalStyle,
+          style={{
+            ...modalStyle,
             backgroundColor:
               (state.type === "offer" && "orange") ||
               (state.type === "request" && "blue") ||
@@ -174,7 +183,7 @@ function SimpleModal(props) {
           }}
         >
           <h1>Create a New Post</h1>
-          <div style={{  margin: "5px 2px", backgroundColor: "white", }}>
+          <div style={{ margin: "5px 2px", backgroundColor: "white" }}>
             <div
               style={{
                 display: "flex",
@@ -309,16 +318,16 @@ function SimpleModal(props) {
                         justifyContent: "space-between",
                       }}
                     >
-                      <div>Offer Details</div>
+                      <div>Offer Description</div>
                       <div>
                         <textarea
                           placeholder={
                             "Provide a brief description about your offer. Include anything that you deem important or as a dependency. (Character limit of 150)"
                           }
                           onChange={(e) =>
-                            handleInputChange("details", e.target.value)
+                            handleInputChange("description", e.target.value)
                           }
-                          text={state.details}
+                          text={state.description}
                         />
                       </div>
                     </div>
