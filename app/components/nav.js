@@ -3,6 +3,17 @@ import Link from "next/link";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import TextField from "@material-ui/core/TextField";
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
+}));
 
 function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,6 +26,8 @@ function SimpleMenu() {
     setAnchorEl(null);
   };
 
+  
+
   return (
     <div>
       <Button
@@ -22,7 +35,7 @@ function SimpleMenu() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        Open Menu
+        Menu
       </Button>
       <Menu
         id="simple-menu"
@@ -31,8 +44,8 @@ function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
+        <MenuItem onClick={handleClose}>Home</MenuItem>
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>
@@ -49,13 +62,15 @@ const links = [
   return link;
 });
 
-const Nav = () => (
+const Nav = () => {
+  const classes = useStyles();
+
+  return(
   <nav>
     <ul>
       <li>
-        <Link prefetch href="/">
-          <a>Home</a>
-        </Link>
+        <SimpleMenu />
+        {/* <a>Home</a> */}
       </li>
       <ul>
         {/* {links.map(
@@ -67,7 +82,9 @@ const Nav = () => (
             </li>
           )
         )} */}
-        <SimpleMenu />
+        <form className={classes.root} noValidate autoComplete="off">
+          <TextField id="outlined-basic" label="Search" variant="outlined" />
+        </form>
       </ul>
     </ul>
 
@@ -79,6 +96,7 @@ const Nav = () => (
       }
       nav {
         text-align: center;
+        background-color: orange;
       }
       ul {
         display: flex;
@@ -98,6 +116,6 @@ const Nav = () => (
       }
     `}</style>
   </nav>
-);
+)};
 
 export default Nav;

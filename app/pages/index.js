@@ -6,24 +6,8 @@ export default () => (
   <div>
     <Head title="Home" />
     <Nav />
-    <div className="hero">
-      <h1 className="title">Welcome to create-next-app-cli (Create Next.js App building tools)</h1>
-      <p className="description">To get started, edit <code>pages/index.js</code> and save to reload.</p>
-      <div className="row">
-        <Link href="https://nextjs.org/docs/">
-          <a className="card">
-            <h3>Getting Started &rarr;</h3>
-            <p>Learn more about Next.js on official website</p>
-          </a>
-        </Link>
-        <Link href="https://github.com/themodernjavascript/create-next-app-cli">
-          <a className="card">
-            <h3>Create Next App CLI &rarr;</h3>
-            <p>Was this tools helpful?</p>
-          </a>
-        </Link>
-      </div>
-    </div>
+    
+    
 
     <style jsx>{`
       .hero {
