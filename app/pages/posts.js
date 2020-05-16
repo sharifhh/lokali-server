@@ -206,7 +206,7 @@ function SimpleModal(props) {
               }}
             >
               <div>
-                <p>Choose One of the following post types:</p>
+                <p>Choose one of the following post types:</p>
               </div>
               <div>
                 <FormControl className={classes.formControl}>
