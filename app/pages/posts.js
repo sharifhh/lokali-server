@@ -29,20 +29,6 @@ export default () => {
     setFormState({ ...formState, [key]: value });
   };
 
-  // const config = { proxy: { host: "127.0.0.1", port: 4000 } };
-
-  const submitForm = () => {
-    console.log("formState", formState);
-    axios
-      .post(`http://localhost:4000/api/posts/${formState.type}s`, formState)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   useEffect(() => {
     console.log(formState);
   }, [formState]);
@@ -52,11 +38,7 @@ export default () => {
       <Head title="Home" />
       <Nav />
       <SimpleContainer>
-        <SimpleModal
-          state={formState}
-          handleInputChange={handleInputChange}
-          submitForm={submitForm}
-        />
+        <SimpleModal state={formState} handleInputChange={handleInputChange} />
       </SimpleContainer>
 
       <style jsx>{`
@@ -152,11 +134,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SimpleModal(props) {
-  const { state, handleInputChange, submitForm } = props;
+  const { state, handleInputChange } = props;
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
+
+  const submitForm = () => {
+    console.log("state", state);
+    axios
+      .post(`http://localhost:4000/api/posts/${state.type}s`, state)
+      .then((data) => {
+        console.log(data);
+        handleClose();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleOpen = () => {
     setOpen(true);
@@ -332,9 +327,9 @@ function SimpleModal(props) {
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={state.type}
+                            value={state.category}
                             onChange={(e) =>
-                              handleInputChange("type", e.target.value)
+                              handleInputChange("category", e.target.value)
                             }
                           >
                             <MenuItem value={"offer"}>Offer Post</MenuItem>
@@ -475,9 +470,9 @@ function SimpleModal(props) {
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={state.type}
+                            value={state.category}
                             onChange={(e) =>
-                              handleInputChange("type", e.target.value)
+                              handleInputChange("category", e.target.value)
                             }
                           >
                             <MenuItem value={"offer"}>Offer Post</MenuItem>
@@ -618,9 +613,9 @@ function SimpleModal(props) {
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={state.type}
+                            value={state.category}
                             onChange={(e) =>
-                              handleInputChange("type", e.target.value)
+                              handleInputChange("category", e.target.value)
                             }
                           >
                             <MenuItem value={"offer"}>Offer Post</MenuItem>
@@ -761,9 +756,9 @@ function SimpleModal(props) {
                           <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            value={state.type}
+                            value={state.category}
                             onChange={(e) =>
-                              handleInputChange("type", e.target.value)
+                              handleInputChange("category", e.target.value)
                             }
                           >
                             <MenuItem value={"offer"}>Offer Post</MenuItem>
@@ -829,8 +824,12 @@ function SimpleModal(props) {
               justifyContent: "flex-end",
             }}
           >
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={submitForm}>Create</Button>
+            {state.type !== "Select Type" && (
+              <>
+                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={submitForm}>Create</Button>
+              </>
+            )}
           </div>
         </div>
       </Modal>
