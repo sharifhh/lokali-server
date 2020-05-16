@@ -17,11 +17,25 @@ export default () => {
     description: "",
     category: "",
     location: "",
-    author: "Development"
+    author: "Development",
   });
 
   const handleInputChange = (key, value) => {
     setFormState({ ...formState, [key]: value });
+  };
+
+  const config = { proxy: { port: 4000 } };
+
+  const submitForm = () => {
+    console.log("formState", formState);
+    axios
+      .post(`/api/posts/${formState.type}s`, formState, config)
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -33,7 +47,11 @@ export default () => {
       <Head title="Home" />
       <Nav />
       <SimpleContainer>
-        <SimpleModal state={formState} handleInputChange={handleInputChange} />
+        <SimpleModal
+          state={formState}
+          handleInputChange={handleInputChange}
+          submitForm={submitForm}
+        />
       </SimpleContainer>
 
       <style jsx>{`
@@ -87,8 +105,6 @@ export default () => {
   );
 };
 
-const CreateNewPostModal = ({ state }) => {};
-
 const SimpleContainer = ({ children }) => {
   return (
     <React.Fragment>
@@ -124,7 +140,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SimpleModal(props) {
-  const { state, handleInputChange } = props;
+  const { state, handleInputChange, submitForm } = props;
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -137,19 +153,6 @@ function SimpleModal(props) {
   const handleClose = () => {
     handleInputChange("type", "Select Type");
     setOpen(false);
-  };
-
-  const submitForm = () => {
-    axios.post(`/api/posts/${state.type}s`, state).then((err, data) => {
-      if (err) {
-        throw err;
-      }
-      if (data) {
-        console.log(data);
-        // maybe also throw up an alert to let them know whether or not it was successful.......
-        handleClose();
-      }
-    });
   };
 
   return (
