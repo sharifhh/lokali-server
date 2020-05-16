@@ -24,7 +24,7 @@ export default () => {
     setFormState({ ...formState, [key]: value });
   };
 
-  const config = { proxy: { port: 4000 } };
+  const config = { proxy: { host: "127.0.0.1", port: 4000 } };
 
   const submitForm = () => {
     console.log("formState", formState);
