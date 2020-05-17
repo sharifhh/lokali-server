@@ -14,7 +14,6 @@ module.exports = (app) => {
               let dbRes = err ? err : doc
               delete dbRes.password 
               req.session.user = dbRes
-              console.log(req.session)
               res.json(dbRes)
           })
         }
@@ -22,6 +21,24 @@ module.exports = (app) => {
             console.error('An error has occured')
             
         }
+    })
+    //LOGIN ROUTE
+    app.post('/auth/login', async (req,res)=>{
+        let user = req.body
+        await connectToDB()
+        let userDB = await db.User.findOne({email:user.email})
+        try{
+            let {password} = userDB
+            let passwordToCompare = user.password
+            let passwordMatch = await bcrypt.compare(passwordToCompare, password)
+            req.session.user = userDB
+            let resp =  passwordMatch ? userDB : null
+            res.json(resp)
+        }
+        catch(e){
+            res.json(null)
+        }
+
     })
      
 };

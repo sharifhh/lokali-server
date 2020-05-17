@@ -15,7 +15,7 @@ app.use(session({
     name:'my-little-session',
     secret:'My ultraMEGA SECRET',
     cookie:{
-        maxAge: 1000 * 60 * 10,
+        maxAge: 1000  * 3 * 10,
         secure: false,
         sameSite:true,
         HttpOnly :false
