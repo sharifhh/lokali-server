@@ -1,0 +1,48 @@
+.register{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: absolute;
+    background: #d9d9d9;
+    height:60vh;
+    border-radius: 5px;;
+    padding:30px;
+    min-width: 40%;
+}
+.container{
+    display:flex;
+    height:calc(100vh - 100px);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.register h1{
+    color:#3388e3
+}
+.register input{
+    height:1.65rem; 
+    padding:2px;
+}
+.lowerSect{
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    justify-self: flex-end;
+}
+.lowerSect button{
+    background: #ff7227;
+    color:white;
+    border:none;
+    width:40%;
+    padding:10px;
+}
+.remAuth{
+    display:flex;
+    align-items:center
+}
+.redirectSpan{
+    text-align: center;
+    margin-top:30px;
+    cursor: pointer;
+
+}
