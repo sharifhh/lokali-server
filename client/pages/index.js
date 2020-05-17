@@ -10,7 +10,6 @@ export default () => (
   <div>
     <AuthContextProvider>
       <Head title="Home" />
-      <Nav />
       <Register/>
     </AuthContextProvider>
     

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import Link from "next/link";
 import Head from "../components/head";
-import Nav from "../components/nav";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Button from "@material-ui/core/Button";
@@ -31,7 +30,6 @@ export default () => {
   return (
     <div>
       <Head title="Home" />
-      <Nav />
       <SimpleContainer>
         <SimpleModal state={formState} handleInputChange={handleInputChange} />
       </SimpleContainer>

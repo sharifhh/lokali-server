@@ -3,15 +3,20 @@ const connectToDB = require('../../dbConnection')
 
 module.exports = (app) => {
     
-    app.post('/auth/login',  async (req,res)=>{
-        let loggedUser = req.body
-        console.log(loggedUser)
+    app.post('/auth/signup',  async (req,res)=>{
+        let newUser = req.body
         await connectToDB()
-        await db.User.create(loggedUser , (err, doc)=>err ? err : doc)
-        
-
-        
-     
+        try{
+          await db.User.create(newUser, (err,doc) => {
+              let dbRes = err ? err : doc
+              console.log('saul goodman!')
+              res.json(dbRes)
+          })
+        }
+        catch(e){
+            console.error('An error has occured')
+            
+        }
     })
-
+     
 };
