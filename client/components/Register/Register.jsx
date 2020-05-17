@@ -1,20 +1,21 @@
-import React, { useState, useReducer, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styles from './Register.module.css'
 import { LOGIN_TYPE, SIGNUP_TYPE, FORM_SIGNUP_TITLE, FORM_LOGIN_TITLE, FORM_SIGNUP_SUBTITLE, FORM_LOGIN_SUBTITLE, USER_EXISTS_ERR_CODE } from '../../constants';
 import { capitalize } from '../../utils';
 import { AuthContext } from '../../context/AuthContext';
+import Router from 'next/router';
 
 const Register = () => {
     //Auth Context
-    const {login, signup} = useContext(AuthContext)
+    const {login, signup, setCurrLoggedUser} = useContext(AuthContext)
     //Register State
     const [form,setForm] = useState({name:'',password:'', email:'', createSession:false})
     const [formType, setFormType] = useState(SIGNUP_TYPE)
     const [title, setTitle] = useState(FORM_SIGNUP_TITLE)
     const [subTitle, setSubTitle] = useState(FORM_SIGNUP_SUBTITLE)
     const [showErrMsg,setShowErrMsg] = useState({msg:'All Fields are required', show:false, loading:false})
-    //useEffect errmsg
-    useEffect(()=> setShowErrMsg(false),[formType])
+   
+    useEffect(()=> setShowErrMsg(false),[formType ,form]) //useEffect reset err msg when switch between forms or when user types
     //On type switch (LOGIN --> SIGNUP and vice versa) TODO: Consider using reducerer
     const handleFormType = () =>{
         let switchFormType = formType === SIGNUP_TYPE ? LOGIN_TYPE : SIGNUP_TYPE
@@ -32,17 +33,29 @@ const Register = () => {
     
     //SUBMIT
     const handleSubmit = async () =>{
+       //Front end validation 
        let isValid = validateForm()
        if(!isValid) setShowErrMsg({show:true, msg:'All Fields are required'})
+
        else{
            let res =  formType === LOGIN_TYPE ? await login(form) : await signup(form)
-           if(res.code === USER_EXISTS_ERR_CODE) setShowErrMsg({show:true,msg:'User Exists'})
-
+           if(!res) {
+            setShowErrMsg({show:true,msg: 'Email/Password are incorrect, Please try again'})
+            return
+           }
+           if(res.code === USER_EXISTS_ERR_CODE) {
+                setShowErrMsg({show:true,msg:'User Exists'})
+                return
+           }
+           console.log(res)
+           setCurrLoggedUser('dude')
+           Router.push('/profile')
        }
     }
 
     const validateForm = () =>{
         let formToValidation = Object.assign({}, {...form})        
+        if(formType === LOGIN_TYPE) delete formToValidation.name
         delete formToValidation.createSession
         let isValid = Object.values(formToValidation).every(field=>field)
         return isValid
