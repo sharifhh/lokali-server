@@ -1,4 +1,4 @@
-.profileModalContainer{
+.outerContainer{
     
     position: absolute;
     top:55%;
@@ -32,7 +32,6 @@
 }
 .sidebar{
     flex:30%;
-    margin:0 10px;
 
 }
 .inputContainer{
@@ -64,12 +63,23 @@
     border:none;
     height: 1.8rem;
 }
+.modalInput{
+}
+.modalInput input{
+    width:70%;
+    border:none;
+    height:40px;
+    background: var(--input-bg);
+
+}
+.innerSection{
+
+}
 .sidebarItem{
     position: relative;
     background-color: var(--img-ph);
     flex:1;
     border-radius: 20px;;
-    margin: 4px 0
 }
 
 .btnContainer{
