@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 import Link from "next/link";
 import Head from "../../components/head";
 import { makeStyles } from "@material-ui/core/styles";
@@ -15,6 +15,7 @@ import {
   OutlinedInput,
   InputLabel,
   InputAdornment,
+  FilledInput,
 } from "@material-ui/core";
 import axios from "axios";
 import PostCard from "../../components/post-card";
@@ -151,7 +152,6 @@ export default () => {
               display: "flex",
               flexFlow: "row wrap",
               justifyContent: "center",
-
               width: "50%",
               height: "100vh",
               overflow: "auto",
@@ -170,9 +170,8 @@ export default () => {
             />
             <div
               style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignContent: "flex-start",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr 1fr",
               }}
             >
               {dummyData
@@ -313,22 +312,20 @@ function SimpleModal(props) {
     <div
       style={{
         backgroundColor: "#eee",
-        display: "flex",
-        justifyContent: "space-between",
+        display: "grid",
+        gridTemplateColumns: "2fr 1fr",
       }}
     >
-      <div>
-        <FormControl fullWidth className={classes.margin}>
-          <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
-          <TextField
-            id="outlined-adornment-amount"
-            value={state.title}
-            onChange={(e) => handleInputChange("title", e.target.value)}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            labelWidth={60}
-          />
-        </FormControl>
-      </div>
+      <FormControl className={classes.margin} variant="filled">
+        <InputLabel htmlFor="filled-adornment-amount">Search</InputLabel>
+        <FilledInput
+          id="filled-adornment-amount"
+          value={state.title}
+          onChange={(e) => handleInputChange("title", e.target.value)}
+
+          // startAdornment={<InputAdornment position="start">$</InputAdornment>}
+        />
+      </FormControl>
       <Button type="button" onClick={handleOpen}>
         Create New Post
       </Button>
@@ -337,11 +334,18 @@ function SimpleModal(props) {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
+        style={{
+          display: "grid",
+          justifyItems: "center",
+          overflow: "auto",
+        }}
       >
         <div
           className={classes.paper}
           style={{
-            ...modalStyle,
+            display: "grid",
+            // gridTemplateColumns: "auto 70% auto",
+            overflow: "auto",
             backgroundColor:
               (state.type === "offer" && "#fea53a") ||
               (state.type === "request" && "#4a86e8") ||
