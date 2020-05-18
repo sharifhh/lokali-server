@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-
+import styles from "./styles.module.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Modal, Card } from "@material-ui/core";
+
+console.log(styles);
 
 // const useStyles = makeStyles({
 //   root: {
@@ -35,6 +37,7 @@ const backgroundColorHelperFn = (type) => {
 };
 
 const PostCard = (props) => {
+  console.log(props);
   return (
     <>
       <Card
@@ -43,17 +46,24 @@ const PostCard = (props) => {
           width: 300,
           height: 200,
           margin: 15,
-          //   backgroundColor: backgroundColorHelperFn(props.type),
+          backgroundColor: backgroundColorHelperFn(props.type),
           border: `2px solid ${backgroundColorHelperFn(props.type)}`,
         }}
       >
-        <PostCardModal>
-          <div className="titleBar">
-            <div className="title">{props.title}</div>
-            <div className="date">{props.date}</div>
+        <PostCardModal {...props}>
+          <div
+            className="titleBar"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <div className="title" style={{ fontSize: "24px" }}>
+              {props.title}
+            </div>
+            <div className="date" style={{ fontSize: "20px" }}>
+              {props.date}
+            </div>
           </div>
-          <div className="location">{props.location}</div>
-          <div className="cardContent">
+          <div className="cardContent" style={{ backgroundColor: "white" }}>
+            <div className="location">Location: {props.location}</div>
             <p>
               {props.description.length > 150
                 ? props.description.slice(0, 149) + " ..."
@@ -71,7 +81,8 @@ const PostCard = (props) => {
   );
 };
 
-const PostCardModal = ({ props, children }) => {
+const PostCardModal = ({ title, children }) => {
+  console.log(title)
   //   const {
   //   state,
   // handleInputChange,
@@ -96,8 +107,13 @@ const PostCardModal = ({ props, children }) => {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
+        style={{
+          display: "grid",
+          justifyItems: "center",
+          overflow: "auto",
+        }}
       >
-        <div></div>
+        <div style={{ backgroundColor: "white" }}>{title}</div>
       </Modal>
     </div>
   );
