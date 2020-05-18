@@ -3,29 +3,6 @@ import styles from "./styles.module.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Modal, Card } from "@material-ui/core";
 
-console.log(styles);
-
-// const useStyles = makeStyles({
-//   root: {
-//     height: 200,
-//     width: 300,
-//     margin: 10,
-//     padding: 2,
-//     display: "inline",
-//   },
-//   titleBar: {
-//     fontSize: 14,
-//     display: "flex",
-//     justifyContent: "space-between",
-//   },
-//   title: { fontSize: 20 },
-//   cardContent: { backgroundColor: "#eee", padding: 2 },
-//   date: { color: "white" },
-//   pos: {
-//     marginBottom: 12,
-//   },
-// });
-
 const backgroundColorHelperFn = (type) => {
   return (
     (type === "offer" && "orange") ||
@@ -37,7 +14,6 @@ const backgroundColorHelperFn = (type) => {
 };
 
 const PostCard = (props) => {
-  console.log(props);
   return (
     <>
       <Card
@@ -82,7 +58,6 @@ const PostCard = (props) => {
 };
 
 const PostCardModal = ({ title, children }) => {
-  console.log(title)
   //   const {
   //   state,
   // handleInputChange,

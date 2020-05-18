@@ -48,7 +48,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -57,7 +57,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -66,7 +66,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -75,7 +75,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -84,7 +84,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -93,7 +93,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -102,7 +102,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -111,7 +111,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -120,7 +120,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -129,7 +129,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
     {
       title: "Dinner with Strangers",
@@ -138,7 +138,7 @@ export default () => {
       description:
         "The offering item and explanation mission statement information here",
       details:
-        "More textual details about the offer is written here, pictures and additional information are available by opening the extended details dialog popup",
+        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
     },
   ];
 
