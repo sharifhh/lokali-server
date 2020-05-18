@@ -1,18 +1,21 @@
 const express = require('express');
 const cors = require('cors')
-const bodyParser = require('body-parser')
 const session = require('express-session')
 const app = express();
 
 const PORT = process.env.PORT || 4000;
 
 // Middleware
+app.use(cors({
+    origin:'http://localhost:3000' || 'http://127.0.0.1:3000',
+    credentials:true
+}))
 
 app.use(session({
     name:'my-little-session',
     secret:'My ultraMEGA SECRET',
     cookie:{
-        maxAge: 1000 * 60 * 10,
+        maxAge: 1000  * 3 * 10,
         secure: false,
         sameSite:true,
         HttpOnly :false
@@ -20,7 +23,6 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
 }))
-app.use(cors())
 
 app.use(express.urlencoded({
     extended: true

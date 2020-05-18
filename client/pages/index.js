@@ -1,12 +1,19 @@
-import Link from "next/link";
-import Head from "../components/head";
-import AuthContextProvider from "../context/AuthContext";
+import Link from 'next/link';
+import Head from '../components/head';
+import Nav from '../components/Nav/Nav';
+import Register from '../components/Register/Register'
+import  AuthContextProvider  from '../context/AuthContext';
+
+
 
 export default () => (
   <div>
     <AuthContextProvider>
       <Head title="Home" />
+      <Register/>
     </AuthContextProvider>
+    
+    
 
     <style jsx>{`
       .hero {
@@ -21,8 +28,7 @@ export default () => (
         line-height: 1.15;
         font-size: 37px;
       }
-      .title,
-      .description {
+      .title, .description {
         text-align: center;
       }
       .row {
@@ -38,7 +44,7 @@ export default () => (
         text-align: left;
         text-decoration: none;
         color: #434343;
-        border: 1px solid #9b9b9b;
+        border: 1px solid #9B9B9B;
       }
       .card:hover {
         border-color: #067df7;
