@@ -9,7 +9,7 @@ const Register = () => {
     //Auth Context
     const {login, signup, setCurrLoggedUser} = useContext(AuthContext)
     //Register State
-    const [form,setForm] = useState({name:'',password:'', email:'', createSession:false})
+    const [form,setForm] = useState({name:'', email:'',password:'', createSession:false})
     const [formInfo, setformInfo] = useState(FORM_SIGNUP_INFO)
     const [showErrMsg,setShowErrMsg] = useState({msg:ALL_FIELDS_REQUIRED_ERR , show:false, loading:false})
    
@@ -36,8 +36,6 @@ const Register = () => {
                 setShowErrMsg({show:true,msg:USER_EXISTS_ERR})
                 return
            }
-           console.log(res)
-           setCurrLoggedUser('dude')
            Router.push('/profile')
        }
     }

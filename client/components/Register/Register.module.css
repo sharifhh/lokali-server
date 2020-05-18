@@ -20,8 +20,10 @@
     color:#3388e3
 }
 .register input{
-    height:1.65rem; 
-    padding:2px;
+    height:2rem; 
+    padding:6px;
+    border:none;
+    background: var(--input-bg);
 }
 .lowerSect{
     display:flex;

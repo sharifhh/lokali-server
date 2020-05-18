@@ -22,3 +22,6 @@ export const ALL_FIELDS_REQUIRED_ERR = 'All Fields are required'
 export const WRONG_INFO_ERR = 'Email/Password are incorrect, Please try again'
 export const USER_EXISTS_ERR = 'User Exists'
 export const USER_EXISTS_ERR_CODE = 11000
+
+
+export const LOGGED_USER_KEY = 'LOGGED_USER'

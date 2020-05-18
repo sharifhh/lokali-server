@@ -1,14 +1,14 @@
 .profileModalContainer{
     
     position: absolute;
-    top:50%;
+    top:55%;
     left:50%;
     transform: translate(-50%, -50%);
     background: var(--main-color);
     min-width:50%;
     color:white;
     padding:3px;
-    height:70vh;
+    height:75vh;
 
 }
 .innerContainer{
@@ -21,19 +21,51 @@
 .title{
     align-self: flex-start;
     margin-left: 10px;
+    padding:10px;
 }
 
 .profileForm{
+    color:darkslategray;
     background: var( --form-bg);
     height:100%;
     flex:70%
 }
 .sidebar{
     flex:30%;
-    margin:0 20px;
+    margin:0 10px;
 
 }
+.inputContainer{
+    margin:20px 0px 0px 20px ;
+}
+.profileImg{
+    object-fit: cover;
+    width:100%;
+    height:100%;
+
+}
+
+.imgEditBtn{
+    z-index:100;
+    position: absolute;
+    top:0%;
+    border-bottom-right-radius: 5px;
+    border:1px solid;
+    left:0%;
+    padding:10px 8px;
+}
+.inputControl{
+    margin: 8px ;
+}
+.inputControl input{
+    width:75%;
+    padding:10px;
+    background: var(--input-bg);
+    border:none;
+    height: 1.8rem;
+}
 .sidebarItem{
+    position: relative;
     background-color: var(--img-ph);
     flex:1;
     border-radius: 20px;;
@@ -52,4 +84,8 @@
 
 .btnContainer button:first-child{
     margin:0 5px;
+}
+
+.formSubtitle{
+    padding:10px;
 }
