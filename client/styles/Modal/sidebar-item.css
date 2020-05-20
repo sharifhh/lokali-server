@@ -1,0 +1,9 @@
+.sidebar-item{
+    background: var(--sidebar-item-bg);
+    height:50%;
+    margin:5px;
+    font-size:16px;
+    color:white;
+    border-radius: var(--small-radius);
+
+}

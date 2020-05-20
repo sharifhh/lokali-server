@@ -1,16 +1,4 @@
-.outerContainer{
-    
-    position: absolute;
-    top:55%;
-    left:50%;
-    transform: translate(-50%, -50%);
-    background: var(--main-color);
-    min-width:50%;
-    color:white;
-    padding:3px;
-    height:75vh;
 
-}
 .innerContainer{
     background: white;
     width:100%;

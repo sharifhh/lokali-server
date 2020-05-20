@@ -1,0 +1,24 @@
+.modal-input{
+    background: var(--input-bg);
+    border:none;
+    margin: 6px 0;
+    padding:8px;
+    width:50%;
+}
+
+.modal-select{
+    width:150px;;
+    background: var(--input-bg);
+    border:none;
+    padding:8px;
+    margin-right:4px;
+
+}
+
+.input-container{
+    width:80%;
+    margin:1px auto;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+}

@@ -1,0 +1,11 @@
+.outer-container{
+    color:white;
+    /* background: var(--main-color); * This is not needed as every modal has different color*/ 
+    width:var(--lg-modal-width);
+    height:var(--lg-modal-height);
+    padding:10px;
+    font-family: Verdana;
+    color:var(--dark-font-color);
+    background: #d9d9d9;
+    border-radius: var(--small-radius);
+}

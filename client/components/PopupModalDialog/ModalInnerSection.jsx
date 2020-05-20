@@ -2,7 +2,7 @@ import React from 'react';
 
 const ModalInnerSection = ({children}) => {
     return ( 
-        <div className="innerSection flex column">
+        <div className="inner-section flex column">
             {children}
         </div>
      );

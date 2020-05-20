@@ -1,8 +1,10 @@
 import React from 'react';
 
-const ModalTitle = ({title}) => {
+const ModalTitle = ({title, size, color}) => {
     return (  
-        <span className={`title modal`}>{title}</span>
+        <div className={`title`}>
+            <span style={{fontSize:size, color:color}} >{title}</span>
+        </div>
     );
 }
  

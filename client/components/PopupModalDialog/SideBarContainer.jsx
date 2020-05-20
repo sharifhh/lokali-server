@@ -2,7 +2,7 @@ import React from 'react';
 
 const SideBarContainer = ({children}) => {
     return ( 
-        <div className="sidebar flex column">
+        <div className="sidebar-container flex column">
             {children}
         </div>
      );

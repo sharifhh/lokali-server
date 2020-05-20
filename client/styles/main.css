@@ -1,0 +1,29 @@
+/* Base  */
+@import './vars.css';
+@import './base/colors.css';
+@import './base/fonts.css';
+@import './reset.css';
+@import './helpers.css';
+@import './base/base.css';
+/* Modal */
+
+@import './Modal/base.css';
+@import './Modal/outer-container.css';
+@import './Modal/inner-container.css';
+@import './Modal/inner-section.css';
+@import './Modal/title.css';
+@import './Modal/subtitle.css';
+@import './Modal/input.css';
+@import './Modal/button-container.css';
+@import './Modal/button.css';
+@import './Modal/sidebar-item.css';
+@import './Modal/sidebar-container.css';
+
+/* Navbar */
+
+@import './Navbar/base.css';
+
+/* Activate Page */
+
+@import './activatePage//logo.css';
+@import './activatePage//contant.css';

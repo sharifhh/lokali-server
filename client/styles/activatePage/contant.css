@@ -1,0 +1,9 @@
+.primary-par{
+    font-size:var( --h3-font-size);
+    font-weight:600;
+}
+.par{
+    line-height: var(--line-height);
+    margin:15px;
+    
+}
