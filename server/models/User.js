@@ -2,12 +2,37 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+
+//User schema mockup:
+
+//name
+//surname
+//email
+//password
+//profileImg
+//phone
+//gender
+//location
+//profession
+//skills
+//hobbies
+//rating
+//badges
+//offerPosted
+//ofersCompleted
+
+
 const UserSchema = new Schema({
   name:{
     type:String,
     required:true,
     unique:true,
     trim:true,
+  },
+  surname:{
+    type:String,
+    required:true,
+    trim:true
   },
 
   email:{
@@ -21,13 +46,18 @@ const UserSchema = new Schema({
     type:String,
     required:true,
     trim:true,
+    default:'temp-pass'
   },
   
   profileImg:{
     type:String,
     default:'https://res.cloudinary.com/dppogsm2u/image/upload/v1586354844/default_gywvgr.jpg',
     required:true
-  }
+  },
+
+  // location:{},
+  // phone:{}
+
   
 });
 

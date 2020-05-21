@@ -20,9 +20,8 @@ const AuthContextProvider = ({children}) => {
 
     }
 
-    const handleEmailActivation = async () =>{
-        let userEmail = loadFromStroge(LOGGED_USER_KEY).email
-        let res = await axios.post('http://localhost:4000/auth/mail-activation', userEmail)
+    const handleEmailActivation = async (userId) =>{
+        let res = await axios.post('http://localhost:4000/auth/mail-activation', userId)
     }
     const values = {
       login,

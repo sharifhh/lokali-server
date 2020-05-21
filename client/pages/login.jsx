@@ -1,9 +1,9 @@
 import React from 'react';
-import ModalOuterContainer from './PopupModalDialog/ModalOuterContainer';
-import ModalTitle from './PopupModalDialog/ModalTitle';
-import ModalInput from './PopupModalDialog/ModalInput';
-import ModalButtonContainer from './PopupModalDialog/ModalButtonContainer'
-import ModalButton from './PopupModalDialog/ModalButton'
+import ModalOuterContainer from '../components/PopupModalDialog/ModalOuterContainer';
+import ModalTitle from '../components/PopupModalDialog/ModalTitle';
+import ModalInput from '../components/PopupModalDialog/ModalInput';
+import ModalButtonContainer from '../components/PopupModalDialog/ModalButtonContainer'
+import ModalButton from '../components/PopupModalDialog/ModalButton'
 
 const Login = () => {
     const handleSubmit = () =>{

@@ -1,15 +1,21 @@
-import React from 'react';
-import ModalOuterContainer from '../components/PopupModalDialog/ModalOuterContainer';
-import ModalInnerContainer from '../components/PopupModalDialog/ModalInnerContainer';
-import ModalInnerSection from '../components/PopupModalDialog/ModalInnerSection';
-import ModalTitle from '../components/PopupModalDialog/ModalTitle';
-import ModalInput from '../components/PopupModalDialog/ModalInput';
-import SidebarItem from '../components/PopupModalDialog/SidebarItem'
-import SidebarContainer from '../components/PopupModalDialog/SidebarContainer'
-import ModalButtonContainer from '../components/PopupModalDialog/ModalButtonContainer';
-import ModalButton from '../components/PopupModalDialog/ModalButton';
-import { SKILL_OPTIONS, HOBBY_OPTIONS } from '../constants';
+import React, { useEffect,  } from 'react';
+import ModalOuterContainer from '../../components/PopupModalDialog/ModalOuterContainer';
+import ModalInnerContainer from '../../components/PopupModalDialog/ModalInnerContainer';
+import ModalInnerSection from '../../components/PopupModalDialog/ModalInnerSection';
+import ModalTitle from '../../components/PopupModalDialog/ModalTitle';
+import ModalInput from '../../components/PopupModalDialog/ModalInput';
+import SidebarItem from '../../components/PopupModalDialog/SidebarItem'
+import SidebarContainer from '../../components/PopupModalDialog/SidebarContainer'
+import ModalButtonContainer from '../../components/PopupModalDialog/ModalButtonContainer';
+import ModalButton from '../../components/PopupModalDialog/ModalButton';
+import { SKILL_OPTIONS, HOBBY_OPTIONS } from '../../constants';
+import { useRouter } from 'next/router';
 const Profile = () => {
+    const router = useRouter()
+    useEffect(()=>{
+        let id = router.query
+        console.log(id)
+    },[])
     return ( 
         <ModalOuterContainer height="500px" color="#fea53a">
             <ModalTitle title="My Profile"/>
