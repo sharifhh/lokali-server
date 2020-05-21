@@ -54,6 +54,11 @@ const UserSchema = new Schema({
     default:'https://res.cloudinary.com/dppogsm2u/image/upload/v1586354844/default_gywvgr.jpg',
     required:true
   },
+  verified:{
+    type:Boolean,
+    default:false,
+    required:true
+  }
 
   // location:{},
   // phone:{}

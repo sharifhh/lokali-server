@@ -9,6 +9,7 @@ export default () => (
   <div>
     <AuthContextProvider>
       <Head title="Home" />
+      <Signup/>
     </AuthContextProvider>
     
     

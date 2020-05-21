@@ -7,7 +7,7 @@ const Nav = () => {
   }
   return ( 
     <div className="nav flex space-evenly">
-      <img class="logo" src="../../static/logo.png" alt="logo"/>
+      <img className="logo" src="../../static/logo.png" alt="logo"/>
       <div className="links">
         <div className="link">
          <img onClick={openProfile} src="https://img.icons8.com/windows/24/000000/user.png"/>

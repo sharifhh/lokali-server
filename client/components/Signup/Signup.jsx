@@ -8,7 +8,7 @@ import ModalButtonContainer from '../PopupModalDialog/ModalButtonContainer'
 import ModalButton from '../PopupModalDialog/ModalButton';
 import ModalInput from '../PopupModalDialog/ModalInput';
 //UTILS
-import { MONTH_LIST, NUM_DAY_IN_MONTH, GENDER_OPTIONS, LOGGED_USER_KEY , ACTIVATION_ROUTE } from '../../constants';
+import { MONTH_LIST, NUM_DAY_IN_MONTH, GENDER_OPTIONS, LOGGED_USER_KEY , ACTIVATION_ROUTE, USER_EXISTS_ERR_CODE } from '../../constants';
 import { saveToStorage } from '../../utils';
 import { AuthContext } from '../../context/AuthContext';
 
@@ -29,8 +29,9 @@ const Signup = () => {
     const handleSubmit =async () => {
         //Redirect user to activation page. in the mean time save user cords in local storage
         let res = await signup(form)
-        if(res.errors) return
+        if(res.errors || res.code === USER_EXISTS_ERR_CODE) return
         let userId = res._id
+   
         Router.push({pathname:ACTIVATION_ROUTE, query:{id:userId}})
     }
     return ( 

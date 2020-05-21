@@ -2,10 +2,21 @@ const db = require('../../models');
 const connectToDB = require('../../dbConnection')
 const  bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
-
-
+const sessionMiddleware = require('../../middleware/session-middleware')
+const {EMAIL_HTML_TEMPLATE} = require('../../constants')
 module.exports = (app) => {
-    
+    app.get(`/auth/verify/:id`, async (req,res)=>{
+        let { id } = req.params
+        await connectToDB()
+        try{
+            let user = await db.User.findOneAndUpdate({_id:id},{verified:true},{new:true},(err,doc)=>{
+                res.json(err ? err : doc)
+            })
+        }catch(e){
+            console.log('error')
+        }
+   
+    })
     app.post('/auth/signup',  async (req,res)=>{
         
         let newUser = req.body
@@ -14,6 +25,7 @@ module.exports = (app) => {
         try{
           await db.User.create(newUser, (err,doc) => {
               let dbRes = err ? err : doc
+              console.log(dbRes)
               res.json(dbRes)
           })
         }
@@ -23,20 +35,29 @@ module.exports = (app) => {
         }
     })
     //LOGIN ROUTE
-    app.post('/auth/login', async (req,res)=>{
-        let user = req.body
+    app.post('/auth/login',  async (req,res)=>{ // this is tricky because it 2 cases. user sign up or new user
+        let { pass, email } = req.body
         await connectToDB()
-        let userDB = await db.User.findOne({email:user.email})
-        try{
-            let {password} = userDB
-            let passwordToCompare = user.password
-            let passwordMatch = await bcrypt.compare(passwordToCompare, password)
-            req.session.user = userDB
-            let resp =  passwordMatch ? userDB : null
-            res.json(resp)
-        }
-        catch(e){
-            res.json(null)
+        let userDB = await db.User.findOne({email}, (err,doc)=>{return err ? err : doc})
+        // req.session.userId = userDB._id
+        if(userDB.password === 'temp-pass'){
+            let hashedPass = await bcrypt.hash(pass, 10)
+            await db.User.findOneAndUpdate({email:email},{password:hashedPass},{new:true},(err,doc)=>{
+                res.status(201).send(err ? err : doc)  
+                process.exit(0)
+            })
+        }else{
+            try{
+                let {password} = userDB
+                let passwordMatch = await bcrypt.compare(pass, password)
+                let resp =  passwordMatch ? userDB : null
+                if(resp) delete resp.password
+                req.session.userId = userDB._id
+                res.json(resp)
+            }
+            catch(e){
+                res.json(null)
+            }
         }
 
     })
@@ -44,13 +65,13 @@ module.exports = (app) => {
     app.post('/auth/mail-activation', async (req,res)=>{
         let {id} = req.body
         await connectToDB()
-        let {email} = await db.User.findOne({_id:id})
-        let htmlTemplate = `
-        <div style="background:#eee">
-            <h1>Thank for Joining Lokali. please clicl the link below to enter Lokali</h1>
-            <a> href=http://localhost:3000/login?id=${id}</a>
-        </div>   
-        `
+        try{
+            let {email} = await db.User.findOne({_id:id})
+        }
+        catch(e){
+            res.status(404).end('User not found');
+        }
+
         const gmailAccessInfo ={
             user:process.env.GMAIL_USER,
             clientId: process.env.GMAIL_CLIENT_ID,
@@ -66,17 +87,16 @@ module.exports = (app) => {
             },
         });
         // send mail with defined transport object
-        try{\
+        try{
 
             let info = await transporter.sendMail({
                 from: process.env.SENDER_ADDRESS, // sender address
                 to: email, // list of receivers
                 subject: 'Lokali Activation Email', // Subject line
                 text: "", // plain text body
-                html: htmlTemplate, // html body
+                html: EMAIL_HTML_TEMPLATE, // html body
             });
-            console.log("Message sent: %s", info.messageId);
-            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            res.send('Mail has been sent!')
         }
         catch(e){
             console.log('------------------------------')

@@ -13,8 +13,9 @@ import { useRouter } from 'next/router';
 const Profile = () => {
     const router = useRouter()
     useEffect(()=>{
-        let id = router.query
-        console.log(id)
+        let {userId} = router.query
+        console.log(userId)
+        
     },[])
     return ( 
         <ModalOuterContainer height="500px" color="#fea53a">
