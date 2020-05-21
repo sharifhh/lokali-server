@@ -20,6 +20,10 @@ import {
 import axios from "axios";
 import PostCard from "../../components/post-card";
 import PostsForm from "../../components/form";
+import dummyData from "./dummyData.json";
+
+import PostTile from "../../components/Tiles/PostTile";
+import CreateNewPostBar from '../../components/Bar/CreateNewPostBar'
 
 export default () => {
   const [formState, setFormState] = useState({
@@ -30,209 +34,134 @@ export default () => {
     location: "",
     author: "Development",
   });
-
+  const [posts, setPosts] = useState([]);
   const handleInputChange = (key, value) => {
     setFormState({ ...formState, [key]: value });
   };
 
   useEffect(() => {
     // console.log(formState);
-    console.log(styles);
+    // console.log(styles);
+
+    axios.get("http://localhost:4000/api/posts/offers").then((response) => {
+      const { data } = response;
+      console.log(data);
+      setPosts(data);
+    });
   }, []);
 
-  const dummyData = [
-    {
-      title: "Dinner with Strangers",
-      type: "offer",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "event",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "event",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "event",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "event",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "event",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "event",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "event",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "initiative",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "request",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-    {
-      title: "Dinner with Strangers",
-      type: "offer",
-      date: "22/4/2020",
-      description:
-        "The offering item and explanation mission statement information here",
-      details:
-        "More details about the offer are written here, pictures and additional information are available by opening the extended details dialog popup",
-    },
-  ];
-
   return (
-    <div>
-      <Head title="Home" />
-      <SimpleContainer>
-        <div style={{ display: "flex" }}>
-          <div
-            style={{
-              display: "flex",
-              flexFlow: "row wrap",
-              justifyContent: "center",
-              width: "50%",
-              height: "100vh",
-              overflow: "auto",
-            }}
-          >
-            {dummyData
-              .filter((item) => item.type === "event")
-              .map((item, index) => (
-                <PostCard key={index} {...item} />
-              ))}
-          </div>
-          <div>
-            <SimpleModal
-              state={formState}
-              handleInputChange={handleInputChange}
-            />
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr 1fr",
-              }}
-            >
-              {dummyData
-                .filter((item) => item.type !== "event")
-                .map((item, index) => (
-                  <PostCard key={index} {...item} />
-                ))}
-            </div>{" "}
+    <div className={`${styles.container}`}>
+      <div className={`${styles.eventsContainer}`}>
+        <div className={`${styles.eventsTitle}`}>Title Placeholder</div>
+        <div className={`${styles.eventsDisplay}`}>
+          <div className={`${styles.eventTile}`}>
+            <div className={`${styles.eventTileTitle}`}>eventTileTitle</div>
+            <div className={`${styles.eventTileBody}`}>eventTileBody</div>
           </div>
         </div>
-      </SimpleContainer>
-
-      <style jsx>{`
-        .hero {
-          width: 100%;
-          color: #333;
-        }
-        .title {
-          margin: 0;
-          width: 100%;
-          padding-top: 80px;
-          padding-bottom: 12px;
-          line-height: 1.15;
-          font-size: 37px;
-        }
-        .title,
-        .description {
-          text-align: center;
-        }
-        .row {
-          max-width: 587px;
-          margin: 80px auto 40px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-        .card {
-          padding: 18px 18px 24px;
-          width: 220px;
-          text-align: left;
-          text-decoration: none;
-          color: #434343;
-          border: 1px solid #9b9b9b;
-        }
-        .card:hover {
-          border-color: #067df7;
-        }
-        .card h3 {
-          margin: 0;
-          color: #067df7;
-          font-size: 18px;
-        }
-        .card p {
-          margin: 0;
-          padding: 12px 0 0;
-          font-size: 13px;
-          color: #333;
-        }
-      `}</style>
+      </div>
+      <div className={`${styles.postsContainer}`}>
+        <CreateNewPostBar styles={styles} />
+        <div className={`${styles.postsDisplay}`}>
+          <PostTile styles={styles} />
+          <PostTile styles={styles} />
+        </div>
+      </div>
     </div>
   );
+
+  // return (
+  //   <div>
+  //     <Head title="Home" />
+  //     <SimpleContainer>
+  //       <div style={{ display: "flex" }}>
+  //         <div
+  //           style={{
+  //             display: "flex",
+  //             flexFlow: "row wrap",
+  //             justifyContent: "center",
+  //             width: "50%",
+  //             height: "100vh",
+  //             overflow: "auto",
+  //           }}
+  //         >
+  //           {dummyData
+  //             .filter((item) => item.type === "event")
+  //             .map((item, index) => (
+  //               <PostCard key={index} {...item} />
+  //             ))}
+  //         </div>
+  //         <div>
+  //           <SimpleModal
+  //             state={formState}
+  //             handleInputChange={handleInputChange}
+  //           />
+  //           <div
+  //             style={{
+  //               display: "grid",
+  //               gridTemplateColumns: "1fr 1fr 1fr",
+  //             }}
+  //           >
+  //             {dummyData
+  //               .filter((item) => item.type !== "event")
+  //               .map((item, index) => (
+  //                 <PostCard key={index} {...item} />
+  //               ))}
+  //           </div>{" "}
+  //         </div>
+  //       </div>
+  //     </SimpleContainer>
+
+  //     <style jsx>{`
+  //       .hero {
+  //         width: 100%;
+  //         color: #333;
+  //       }
+  //       .title {
+  //         margin: 0;
+  //         width: 100%;
+  //         padding-top: 80px;
+  //         padding-bottom: 12px;
+  //         line-height: 1.15;
+  //         font-size: 37px;
+  //       }
+  //       .title,
+  //       .description {
+  //         text-align: center;
+  //       }
+  //       .row {
+  //         max-width: 587px;
+  //         margin: 80px auto 40px;
+  //         display: flex;
+  //         flex-direction: row;
+  //         justify-content: space-around;
+  //       }
+  //       .card {
+  //         padding: 18px 18px 24px;
+  //         width: 220px;
+  //         text-align: left;
+  //         text-decoration: none;
+  //         color: #434343;
+  //         border: 1px solid #9b9b9b;
+  //       }
+  //       .card:hover {
+  //         border-color: #067df7;
+  //       }
+  //       .card h3 {
+  //         margin: 0;
+  //         color: #067df7;
+  //         font-size: 18px;
+  //       }
+  //       .card p {
+  //         margin: 0;
+  //         padding: 12px 0 0;
+  //         font-size: 13px;
+  //         color: #333;
+  //       }
+  //     `}</style>
+  //   </div>
+  // );
 };
 
 const SimpleContainer = ({ children }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
 
-const ModalButton = ({text, handleClick}) =>  <button onClick={handleClick}>{text}</button>
+const ModalButton = ({children, onClick}) =>  <button onClick={onClick}>{children}</button>
 
 export default ModalButton;
