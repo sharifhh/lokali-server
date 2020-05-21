@@ -1,6 +1,6 @@
 import Nav from '../components/Nav/Nav'
-import '../styles.css'
-import '../helpers.css'
+// import '../styles.css'
+import '../styles/main.css'
 import AuthContextProvider from '../context/AuthContext'
 function MyApp({ Component, pageProps }) {
     

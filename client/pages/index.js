@@ -1,8 +1,7 @@
-import Link from 'next/link';
 import Head from '../components/head';
-import Nav from '../components/Nav/Nav';
-import Register from '../components/Register/Register'
 import  AuthContextProvider  from '../context/AuthContext';
+import Signup from '../components/Signup/Signup';
+import Login from '../components/Login';
 
 
 
@@ -10,7 +9,8 @@ export default () => (
   <div>
     <AuthContextProvider>
       <Head title="Home" />
-      <Register/>
+  
+      <Signup/>
     </AuthContextProvider>
     
     

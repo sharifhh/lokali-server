@@ -2,7 +2,7 @@ import React from 'react';
 
 const ModalInnerContainer = ({children}) => 
 
-        <div className={`innerContainer flex `}>
+        <div className={`inner-container flex `}>
             {children}
         </div>
   

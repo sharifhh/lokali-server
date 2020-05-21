@@ -1,0 +1,7 @@
+.inner-section{
+    background: var(--form-bg);
+    width:100%;
+    font-size:14px;
+    height:100%;
+    border-radius: var(--small-radius);
+}

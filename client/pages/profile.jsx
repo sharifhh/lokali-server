@@ -1,43 +1,52 @@
-import React, { useContext, useEffect } from 'react';
-import CreateProfileForm from '../components/CreateProfileForm'
-import ModalButton from '../components/PopupModalDialog/ModalButton'
-import SidebarItem from '../components/PopupModalDialog/SidebarItem'
-import ModalOuterContainer from '../components/PopupModalDialog/ModalOuterContainer'
-import ModalInnerContainer from '../components/PopupModalDialog/ModalInnerContainer'
-import {AuthContext} from '../context/AuthContext'
-import styles from './styles/Profile.module.css'
-import {Modal} from '@material-ui/core'
-import { loadFromStroge } from '../utils';
-import { LOGGED_USER_KEY } from '../constants';
+import React from 'react';
+import ModalOuterContainer from '../components/PopupModalDialog/ModalOuterContainer';
+import ModalInnerContainer from '../components/PopupModalDialog/ModalInnerContainer';
+import ModalInnerSection from '../components/PopupModalDialog/ModalInnerSection';
 import ModalTitle from '../components/PopupModalDialog/ModalTitle';
+import ModalInput from '../components/PopupModalDialog/ModalInput';
+import SidebarItem from '../components/PopupModalDialog/SidebarItem'
+import SidebarContainer from '../components/PopupModalDialog/SidebarContainer'
 import ModalButtonContainer from '../components/PopupModalDialog/ModalButtonContainer';
-const PopupModal = () => {
-    const {setCurrLoggedUser ,currLoggedUser} = useContext(AuthContext)
-    useEffect(()=> setCurrLoggedUser(loadFromStroge(LOGGED_USER_KEY)) ,[])
-    return currLoggedUser ?  ( 
-         <ModalOuterContainer>
-           <ModalTitle title="My Profile"/>
-                  <ModalInnerContainer>
-                  <div className={`${styles.sidebar} flex column space-around`}>
-                           <SidebarItem>
-                                <img className={styles.profileImg} src={currLoggedUser.profileImg} alt=""/>
-                           </SidebarItem>
-                            <SidebarItem>
-                                <span>My budges</span>
-                            </SidebarItem>
+import ModalButton from '../components/PopupModalDialog/ModalButton';
+import { SKILL_OPTIONS, HOBBY_OPTIONS } from '../constants';
+const Profile = () => {
+    return ( 
+        <ModalOuterContainer height="500px" color="#fea53a">
+            <ModalTitle title="My Profile"/>
+            <ModalInnerContainer>
+                <SidebarContainer>
+                    <SidebarItem>
+                        <span>Click to add your photo</span>
+                    </SidebarItem>
+                    <SidebarItem>
+                        <span>Your Score and Badges</span>
+                    </SidebarItem>
+                </SidebarContainer>
+                <ModalInnerSection>
+                        <p style={{marginLeft:"20px"}} className="subtitle">Personal Details</p>
+                        
+                        <div  style={{marginTop:"20px",padding:""}}>
+                            <ModalInput contain={true} placeholder="Enter your Name" label="Name" type="text"/>
+                            <ModalInput contain={true} placeholder="Enter your Surname" label="Surname" type="text"/>
+                            <ModalInput contain={true} placeholder="Enter your phone number" label="Contact" type="text"/>
+                            <ModalInput contain={true} placeholder="Enter your location" label="Location" type="text"/>
                         </div>
-                        <CreateProfileForm/>
-                  </ModalInnerContainer>
-                    <ModalButtonContainer>
-                        <ModalButton text="Save"/>
-                        <ModalButton text="Cancel"/>
-                    </ModalButtonContainer>
-            
-         </ModalOuterContainer>
-     ) : null //TODO: LOADING GIF!;
+                        <p style={{marginLeft:"20px"}} className="subtitle">More Details</p>
+                            
+                            <div style={{marginTop:"20px",padding:""}}>
+                                <ModalInput contain={true} placeholder="Enter your Profession" label="Profession" type="text"/>
+                                <ModalInput contain={true} placeholder="Select Skills" label="Skills" options={SKILL_OPTIONS}/>
+                                <ModalInput contain={true} placeholder="Select Hobbies" label="Hobbies" options={HOBBY_OPTIONS}/>
+                            </div>
+                </ModalInnerSection>
+
+            </ModalInnerContainer>
+            <ModalButtonContainer>
+                <ModalButton bg="white" color="#999" text="Save"/>
+                <ModalButton bg="white" color="#999" text="Cancel"/>
+            </ModalButtonContainer>
+        </ModalOuterContainer>
+     );
 }
-
-
  
-
-export default PopupModal;
+export default Profile;

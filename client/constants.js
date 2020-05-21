@@ -25,3 +25,60 @@ export const USER_EXISTS_ERR_CODE = 11000
 
 
 export const LOGGED_USER_KEY = 'LOGGED_USER'
+
+
+export const MONTH_LIST = ["January","February","March","April","May","June","July",
+            "August","September","October","November","December"];
+
+export const  NUM_DAY_IN_MONTH= Array.from({length:31}, (v,k) => k+1);
+    
+export const GENDER_OPTIONS = ['Male', 'Female', 'Other','Rather not say']      
+export const ACTIVATION_ROUTE = '/activate'      
+
+
+
+export const SKILL_OPTIONS = ['Communication',
+'Team work',
+'Negotiation',
+'Persuasion',
+'Problem Solving',
+'Leadership',
+'Organisation',
+'Motivation',
+'Work Under Pressure',
+'Confidence',
+'Management Skills',
+'Resilience',
+'Analytical',
+'Entrepreneur',
+'Technical',
+'Helper',
+'Healer',
+'Facilitator',
+'Handyman',
+'Culinary']
+
+
+export const HOBBY_OPTIONS = [
+    'Reading',
+    'Family' ,
+    'Community' ,
+    'Movies',
+    'Sport',
+    'Computer' ,
+    'Gardening',
+    'Walking',
+    'Exercise',
+    'Music',
+    'Entertaining',
+    'Travel',
+    'Socializing',
+    'Yoga',
+    'Arts and Crafts',
+    'Hiking' ,
+    'Cooking',
+    'Camping',
+    'Automotive',
+    'Animal Care Volunteer Work',
+    'Dancing'
+    ]

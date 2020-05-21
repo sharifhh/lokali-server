@@ -1,0 +1,19 @@
+/* Flex box */
+.flex{display:flex;}
+.column{flex-direction: column;}
+.align-center{align-items: center;}
+.justify-center{justify-content: center;}
+.space-around{justify-content: space-around;}
+.space-between{justify-content: space-between;}
+.space-evenly{justify-content: space-evenly;}
+.self-center{align-self: center;}
+.self-right{align-self: flex-end;}
+
+/* General Design Patterns */
+
+.fixed-center{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+}

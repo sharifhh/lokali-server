@@ -1,8 +1,8 @@
 import React from 'react';
 
-const SidebarItem = ({label,children}) => {
+const SidebarItem = ({children}) => {
     return ( 
-        <div className={`sidebarItem flex column align-center justify-center`}>
+        <div className={`sidebar-item flex column align-center justify-center`}>
             {children}
         </div>
      );

@@ -1,9 +1,9 @@
 import React from 'react';
 
 
-const ModalOuterContainer = ({children}) => {
+const ModalOuterContainer = ({children, color="" ,border="none", height=""}) => {
     return ( 
-        <div className={`outerContainer modal space-evenly`}>
+        <div style={{ height:height, background:color, border:border}} className={`outer-container fixed-center flex column`}>
             {children}
         </div>
      );

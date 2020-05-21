@@ -1,3 +1,5 @@
+@import './pages/styles/Profile.module.css';
+
 :root{
     --main-color:#fea53a;
     --logout-btn-color:#ff7227;
@@ -6,7 +8,6 @@
     --main-font:Verdana sans-serif;
     --input-bg:#eee;
 }
-@import './pages/styles/Profile.module.css';
 *{
     box-sizing: border-box;
 }
