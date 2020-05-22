@@ -27,3 +27,13 @@
 
 @import './activatePage//logo.css';
 @import './activatePage//contant.css';
+
+/* temp */
+.errMsg{
+    color:red;
+    padding:6px;
+    font-size:.8rem;
+    min-height: 30px;;
+    opacity: 1;
+    transition: opacity 1.4s ease;
+}

@@ -2,17 +2,30 @@ const db = require('../../models');
 const connectToDB = require('../../dbConnection')
 const  bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
-
+const sessionMiddleware = require('../../middleware/session-middleware')
+const {EMAIL_HTML_TEMPLATE} = require('../../constants')
 module.exports = (app) => {
-    
+    app.get(`/auth/verify/:id`, async (req,res)=>{
+        let { id } = req.params
+        await connectToDB()
+        try{
+            let user = await db.User.findOneAndUpdate({_id:id},{verified:true},{new:true},(err,doc)=>{
+                res.json(err ? err : doc)
+            })
+        }catch(e){
+            console.log('error')
+        }
+   
+    })
     app.post('/auth/signup',  async (req,res)=>{
+        
         let newUser = req.body
+        console.log(newUser)
         await connectToDB()
         try{
           await db.User.create(newUser, (err,doc) => {
               let dbRes = err ? err : doc
-              delete dbRes.password 
-              req.session.user = dbRes
+              console.log(dbRes)
               res.json(dbRes)
           })
         }
@@ -22,54 +35,76 @@ module.exports = (app) => {
         }
     })
     //LOGIN ROUTE
-    app.post('/auth/login', async (req,res)=>{
-        let user = req.body
+    app.post('/auth/login',  async (req,res)=>{ // this is tricky because it 2 cases. user sign up or new user
+        let { pass, email } = req.body
         await connectToDB()
-        let userDB = await db.User.findOne({email:user.email})
-        try{
-            let {password} = userDB
-            let passwordToCompare = user.password
-            let passwordMatch = await bcrypt.compare(passwordToCompare, password)
-            req.session.user = userDB
-            let resp =  passwordMatch ? userDB : null
-            res.json(resp)
-        }
-        catch(e){
-            res.json(null)
+        let userDB = await db.User.findOne({email}, (err,doc)=>{return err ? err : doc})
+        // req.session.userId = userDB._id
+        if(userDB.password === 'temp-pass'){
+            let hashedPass = await bcrypt.hash(pass, 10)
+            await db.User.findOneAndUpdate({email:email},{password:hashedPass},{new:true},(err,doc)=>{
+                res.status(201).send(err ? err : doc)  
+                process.exit(0)
+            })
+        }else{
+            try{
+                let {password} = userDB
+                let passwordMatch = await bcrypt.compare(pass, password)
+                let resp =  passwordMatch ? userDB : null
+                if(resp) delete resp.password
+                req.session.userId = userDB._id
+                res.json(resp)
+            }
+            catch(e){
+                res.json(null)
+            }
         }
 
     })
 
     app.post('/auth/mail-activation', async (req,res)=>{
-        
-        let testAccount = await nodemailer.createTestAccount();
-        // create reusable transporter object using the default SMTP transport
+        let {id} = req.body
+        await connectToDB()
+        try{
+            let {email} = await db.User.findOne({_id:id})
+        }
+        catch(e){
+            res.status(404).end('User not found');
+        }
+
+        const gmailAccessInfo ={
+            user:process.env.GMAIL_USER,
+            clientId: process.env.GMAIL_CLIENT_ID,
+            clientSecret: process.env.GMAIL_CLIENT_SECRET,
+            accessToken: process.env.GMAIL_ACCESS_TOKEN,
+            refreshToken: process.env.GMAIL_REFRESH_TOKEN
+        }
         let transporter = nodemailer.createTransport({
-            // service:'Gmail',
             host: "smtp.gmail.com",
-            port: 25,
-            secure: true, // true for 465, false for other ports
             auth: {
-            user: 'dannyboris1993@gmail.com', // generated ethereal user
-            pass: 'tpifSP1062016', // generated ethereal password
+                    type: "OAuth2",
+                    ...gmailAccessInfo
             },
         });
-
         // send mail with defined transport object
-        let info = await transporter.sendMail({
-            from: 'dannyboris1993@gmail.com', // sender address
-            to: "dannyboris1993@gmail.com", // list of receivers
-            subject: "Hello ✔", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
-        });
+        try{
 
-        console.log("Message sent: %s", info.messageId);
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-        // Preview only available when sending through an Ethereal account
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+            let info = await transporter.sendMail({
+                from: process.env.SENDER_ADDRESS, // sender address
+                to: email, // list of receivers
+                subject: 'Lokali Activation Email', // Subject line
+                text: "", // plain text body
+                html: EMAIL_HTML_TEMPLATE, // html body
+            });
+            res.send('Mail has been sent!')
+        }
+        catch(e){
+            console.log('------------------------------')
+            console.log('------------------------------')
+            console.log(e)
+            console.log('------------------------------')
+            console.log('------------------------------')
+        }
         })
         
 };
