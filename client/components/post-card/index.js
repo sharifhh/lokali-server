@@ -90,13 +90,55 @@ const PostCard = (props) => {
             }}
           >
             <ModalOuterContainer>
-              <ModalHeader>HEADER</ModalHeader>
+              <ModalHeader>
+                {props.title} <button>Favorite</button>
+              </ModalHeader>
               <ModalInnerContainer>
-                <SideBarContainer>
-                  <SidebarItem></SidebarItem>
-                  <SidebarItem></SidebarItem>
-                </SideBarContainer>
-                <ModalMainSection></ModalMainSection>
+                <div
+                  className="container-fluid"
+                  style={{ backgroundColor: "lightgray" }}
+                >
+                  <div className="row">
+                    <div className="col-8">
+                      <div>
+                        <img src="https://via.placeholder.com/450x200" />
+                      </div>
+                      <div>I am new here in Tel Aviv and Im looking to meet new and interesting people. What better way ........</div>
+                    </div>
+                    <div className="col-4">
+                      <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                        Gift Offering
+                      </p>
+                      <p>Open Dinner Party</p>
+                      <br />
+                      <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                        Gift Offering
+                      </p>
+                      <p>Open Dinner Party</p>
+                      <br />
+                      <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                        Gift Offering
+                      </p>
+                      <p>Open Dinner Party</p>
+                      <br />
+                      <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                        Gift Offering
+                      </p>
+                      <p>Open Dinner Party</p>
+                      <br />
+                      <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                        Gift Offering
+                      </p>
+                      <p>Open Dinner Party</p>
+                      <br />
+                      <p style={{ fontWeight: "bold", marginBottom: "10px" }}>
+                        Gift Offering
+                      </p>
+                      <p>Open Dinner Party</p>
+                      <br />
+                    </div>
+                  </div>
+                </div>
               </ModalInnerContainer>
               <ModalButtonContainer>
                 <ModalButton onClick={handleClose}>Cancel</ModalButton>

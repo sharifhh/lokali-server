@@ -31,8 +31,8 @@ export default () => {
       <div className="container-fluid">
         <div className="row no-gutters">
           <div
-            className="eventsContainer |  col-xs-12 col-lg-4 d-flex overflow-auto flex-column align-items-center"
-            style={{ height: "100vh" }}
+            className="eventsContainer |  container-fluid col-xs-12 col-lg-4 d-flex overflow-auto flex-column align-items-center"
+            style={{ height: "90vh" }}
           >
             {posts
               .filter((item) => item.type === "event")
@@ -41,7 +41,10 @@ export default () => {
               ))}
           </div>
           <div className="postsContainer | col-xs-12 col-lg-8 d-flex overflow-auto">
-            <div className="container d-flex flex-wrap justify-content-center">
+            <div
+              className="container-fluid d-flex flex-wrap justify-content-center align-content-start"
+              style={{ height: "90vh" }}
+            >
               {posts
                 .filter((item) => item.type !== "event")
                 .map((item, index) => (
