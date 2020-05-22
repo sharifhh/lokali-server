@@ -1,0 +1,4 @@
+.titleBar {
+  display: flex;
+  justify-content: space-between;
+}
