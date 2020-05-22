@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ModalButton = ({  text, onClick, bg="", color=""}) => {
+const ModalButton = ({  children, onClick, bg="", color=""}) => {
     
-    return <button style={{background:bg, color:color}} className="button" onClick={onClick}>{text}</button>
+    return <button style={{background:bg, color:color}} className="button" onClick={onClick}>{children}</button>
     }
 
 export default ModalButton;

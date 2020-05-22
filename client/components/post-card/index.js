@@ -3,6 +3,17 @@ import styles from "./styles.module.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Modal, Card } from "@material-ui/core";
 
+import ModalOuterContainer from "../../components/PopupModalDialog/ModalOuterContainer";
+import ModalHeader from "../../components/PopupModalDialog/ModalHeader";
+import ModalInnerContainer from "../../components/PopupModalDialog/ModalInnerContainer";
+import ModalTitle from "../../components/PopupModalDialog/ModalTitle";
+import ModalButtonContainer from "../../components/PopupModalDialog/ModalButtonContainer";
+import ModalButton from "../../components/PopupModalDialog/ModalButton";
+import SideBarContainer from "../../components/PopupModalDialog/SideBarContainer";
+import SidebarItem from "../../components/PopupModalDialog/SidebarItem";
+import ModalInput from "../../components/PopupModalDialog/ModalInput";
+import ModalMainSection from "../../components/PopupModalDialog/ModalMainSection";
+
 const backgroundColorHelperFn = (type) => {
   return (
     (type === "offer" && "orange") ||
@@ -14,10 +25,19 @@ const backgroundColorHelperFn = (type) => {
 };
 
 const PostCard = (props) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <>
-      <Card
-        className="root"
+      <div
+        // className="root"
         style={{
           width: 300,
           height: 200,
@@ -26,33 +46,66 @@ const PostCard = (props) => {
           border: `2px solid ${backgroundColorHelperFn(props.type)}`,
         }}
       >
-        <PostCardModal {...props}>
-          <div
-            className="titleBar"
-            style={{ display: "flex", justifyContent: "space-between" }}
+        <div
+          className="titleBar"
+          style={{ display: "flex", justifyContent: "space-between" }}
+        >
+          <div className="title" style={{ fontSize: "24px" }}>
+            {props.title}
+          </div>
+          <div className="date" style={{ fontSize: "20px" }}>
+            {props.date}
+          </div>
+        </div>
+        <div className="cardContent" style={{ backgroundColor: "white" }}>
+          <div className="location">Location: {props.location}</div>
+          <p>
+            {props.description.length > 150
+              ? props.description.slice(0, 149) + " ..."
+              : props.description}
+          </p>
+          <br />
+          <p>
+            {props.details.length > 99
+              ? props.details.slice(0, 100) + " ..."
+              : props.details}
+          </p>
+        </div>
+        <br />
+        <p className="text-center">
+          <a href="#" style={{ color: "white" }} onClick={handleOpen}>
+            Open Modal
+          </a>
+        </p>
+        {open && (
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            style={{
+              display: "grid",
+              justifyItems: "center",
+              overflow: "auto",
+            }}
           >
-            <div className="title" style={{ fontSize: "24px" }}>
-              {props.title}
-            </div>
-            <div className="date" style={{ fontSize: "20px" }}>
-              {props.date}
-            </div>
-          </div>
-          <div className="cardContent" style={{ backgroundColor: "white" }}>
-            <div className="location">Location: {props.location}</div>
-            <p>
-              {props.description.length > 150
-                ? props.description.slice(0, 149) + " ..."
-                : props.description}
-            </p>
-            <p>
-              {props.details.length > 99
-                ? props.details.slice(0, 100) + " ..."
-                : props.details}
-            </p>
-          </div>
-        </PostCardModal>
-      </Card>
+            <ModalOuterContainer>
+              <ModalHeader>HEADER</ModalHeader>
+              <ModalInnerContainer>
+                <SideBarContainer>
+                  <SidebarItem></SidebarItem>
+                  <SidebarItem></SidebarItem>
+                </SideBarContainer>
+                <ModalMainSection></ModalMainSection>
+              </ModalInnerContainer>
+              <ModalButtonContainer>
+                <ModalButton onClick={handleClose}>Cancel</ModalButton>
+                <ModalButton>Bid</ModalButton>
+              </ModalButtonContainer>
+            </ModalOuterContainer>
+          </Modal>
+        )}
+      </div>
     </>
   );
 };
