@@ -1,4 +1,3 @@
-const path = require("path");
 const router = require("express").Router();
 const eventsRoutes = require("./events");
 const giftOfferingsRoutes = require("./giftOfferings");
