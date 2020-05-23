@@ -1,36 +1,15 @@
-const mongoose = require("mongoose");
+const path = require("path");
+const router = require("express").Router();
+const eventsRoutes = require("./events");
+const giftOfferingsRoutes = require("./giftOfferings");
+const helpRequestsRoutes = require("./helpRequests");
+const initiativesRoutes = require("./initiatives");
+const reviewsRoutes = require("./reviews");
 
-const db = require("../../models");
+router.use("/api/posts/events", eventsRoutes);
+router.use("/api/posts/giftofferings", giftOfferingsRoutes);
+router.use("/api/posts/helprequests", helpRequestsRoutes);
+router.use("/api/posts/initiatives", initiativesRoutes);
+router.use("/api/reviews", reviewsRoutes);
 
-const MONGODB_URI =
-  process.env.MONGODB_URI || "mongodb://localhost/local-lokali";
-
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-});
-
-console.log("api file");
-module.exports = (app) => {
-  app.get("/api/posts/offers", async (req, res) => {
-    try {
-      console.log("get /api/posts/offers");
-      await db.Offer.find({}, (err, data) => {
-        res.json(data);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  });
-
-  app.post("/api/posts/offers", async (req, res) => {
-    try {
-      console.log("post /api/posts/offers");
-      console.log(req.body);
-      // const { offer } = req.body;
-      // await db.Offer.create(req.body);
-      res.json({ message: "success" });
-    } catch (error) {
-      console.log(error);
-    }
-  });
-};
+module.exports = router;
