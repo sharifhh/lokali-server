@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const OfferSchema = new Schema({
+const HelpRequestSchema = new Schema({
   title: {
     type: String,
     required: true,
@@ -38,6 +38,6 @@ const OfferSchema = new Schema({
   
 });
 
-const Offer = mongoose.model("Offer", OfferSchema);
+const HelpRequest = mongoose.model("HelpRequest", HelpRequestSchema);
 
-module.exports = Offer;
+module.exports = HelpRequest;

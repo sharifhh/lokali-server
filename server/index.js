@@ -1,41 +1,57 @@
-const express = require('express');
-const cors = require('cors')
-const session = require('express-session')
-require('dotenv').config()
+const express = require("express");
+const cors = require("cors");
+const session = require("express-session");
+require("dotenv").config();
 const app = express();
-
+const mongoose = require("mongoose");
+const api = require("./routes/api");
 const PORT = process.env.PORT || 4000;
 
 // Middleware
-app.use(cors({
-    origin:'http://localhost:3000' || 'http://127.0.0.1:3000',
-    credentials:true
-}))
+app.use(
+  cors({
+    origin: "http://localhost:3000" || "http://127.0.0.1:3000",
+    credentials: true,
+  })
+);
 
-app.use(session({
-    name:'my-little-session',
-    secret:'My ultraMEGA SECRET',
-    cookie:{
-        maxAge: 1000  * 3 * 10,
-        secure: false,
-        sameSite:true,
-        HttpOnly :false
+app.use(
+  session({
+    name: "my-little-session",
+    secret: "My ultraMEGA SECRET",
+    cookie: {
+      maxAge: 1000 * 3 * 10,
+      secure: false,
+      sameSite: true,
+      HttpOnly: false,
     },
-    resave:false,
-    saveUninitialized:false,
-}))
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
-app.use(express.urlencoded({
-    extended: true
-}));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 // routes
-require('./routes/api')(app);
-require('./routes/auth')(app);
+require("./routes/auth")(app);
 
-// listen event 
+app.use(api);
+
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/local-lokali",
+  {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+  }
+);
+
+// listen event
 app.listen(PORT, () => {
-    console.log('listening on port ' + PORT + "\nhttp://localhost:" + PORT);
+  console.log("listening on port " + PORT + "\nhttp://localhost:" + PORT);
 });
