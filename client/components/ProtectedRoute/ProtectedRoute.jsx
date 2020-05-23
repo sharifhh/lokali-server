@@ -6,7 +6,11 @@ const ProtectedRoute = ({children}) => {
     const {currLoggedUser} = useContext(AuthContext)
     const router = useRouter()
     useEffect(()=>{
-        if(!currLoggedUser) router.push({pathname:'/signup',})
+        console.log('PROTECTED ROUTE' , currLoggedUser)
+        setTimeout(() => {
+            
+            if(!currLoggedUser) router.push({pathname:'/signup',})
+        }, 5000);
     },[])
     return ( 
         <div>

@@ -1,14 +1,31 @@
 import axios from 'axios'
 import React, {createContext, useState, useEffect} from 'react';
 import { USER_EXISTS_ERR_CODE, LOGGED_USER_KEY, DEVELOPMENT_HOST } from '../constants';
-import { saveToStorage, loadFromStroge } from '../utils';
+import { loadFromSessionStroge, saveToSessionStorage } from '../utils';
+import { useRouter } from 'next/router';
 
 export const AuthContext = createContext()
 
 const AuthContextProvider = ({children}) => {
 
+  const router = useRouter()
+  useEffect(()=>{
+    const checkForSession = async () => {
+        let res = await axios.get(`${DEVELOPMENT_HOST}/auth/check-session`, {withCredentials:true})
+        let idFromSession = res.data
+        console.log('after checkong session' ,res)
+        if(idFromSession){
+          let user = await axios.get(`${DEVELOPMENT_HOST}/api/users/${idFromSession}`)
+          console.log('USER', user.data)
+          saveToSessionStorage(LOGGED_USER_KEY,  user.data)
+          setCurrLoggedUser( user.data)
+        }else{
+          router.push('/signup')
+        }   
+    }
+    checkForSession()
 
-  useEffect(()=>{setCurrLoggedUser(loadFromStroge(LOGGED_USER_KEY))},[])
+  },[])
 
   const [currLoggedUser, setCurrLoggedUser] = useState(null)
   
@@ -32,6 +49,8 @@ const AuthContextProvider = ({children}) => {
     let res = null
     try{
       res = await axios.post(`${DEVELOPMENT_HOST}/auth/login`, user , {withCredentials:true})
+      console.log('LOGIN ROUTE AUTH:' , res)
+      saveToSessionStorage(res.data)
     }catch(e){
       console.error("Fuck... an error has occured", e)
     }

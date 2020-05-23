@@ -34,7 +34,6 @@ module.exports = (app) => {
         try{
           await db.User.create(newUser, (err,doc) => {
               let dbRes = err ? err : doc
-              req.session.user = dbRes
               res.json(dbRes)
           })
         }
@@ -43,9 +42,14 @@ module.exports = (app) => {
              res.json(null);
         }
     })
+
+    app.get('/auth/check-session',(req,res)=>{
+        res.json(req.session.userId)
+    })
     //LOGIN ROUTE
     app.post('/auth/login',  async (req,res)=>{ // this is tricky because it 2 cases. user sign up or new user
         let { pass, email } = req.body
+        console.log(pass,email)
         await connectToDB()
         let userDB = await db.User.findOne({email}, (err,doc)=>{return err ? err : doc})
         if(!userDB){
@@ -64,11 +68,14 @@ module.exports = (app) => {
                 let passwordMatch = await bcrypt.compare(pass, password)
                 let resp =  passwordMatch ? userDB : null
                 console.log('-=-=-=-=-=-=-=-=-=-=-=')
+                
                 console.log(resp)
                 console.log('-=-=-=-=-=-=-=-=-=-=-=')
-
-                if(resp) delete resp.password
-                req.session.userId = userDB._id
+                
+                if(resp) {
+                    delete resp.password
+                    req.session.userId = resp._id
+                }
                 res.json(resp)
             }
             catch(e){
