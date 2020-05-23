@@ -1,0 +1,6 @@
+.nav-link{
+    /* Rest style is reset.css under <a> */
+    align-self: flex-end;
+    padding:6px;
+    margin-bottom:8px;
+}

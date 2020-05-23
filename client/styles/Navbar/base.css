@@ -1,5 +1,13 @@
-.nav{
+.nav-container{
     height:var(--nav-height);
     background-color:var(--main-color);
+
     
+    
+}
+
+.link-container{
+    height:100%;;
+    width:25%;
+;
 }

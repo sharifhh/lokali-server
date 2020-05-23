@@ -29,6 +29,8 @@ const Head = (props) => (
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>  
+
   </NextHead>
 );
 

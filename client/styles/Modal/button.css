@@ -1,10 +1,16 @@
 .button{
     color:white;
-    padding:10px 65px;
     align-self: right;;
     margin:0 10px;
-    
-    font-size:var(--body-font-size);
+    font-size:13px;
     background: var(--main-color);
     border:none;
+}
+.lg-btn{
+    padding:10px 55px;
+    
+}
+.small-btn{
+    padding: 10px 10px;
+
 }

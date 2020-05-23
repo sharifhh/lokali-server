@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ModalInput = ({label, placeholder,type, options, id, onChange, value, contain=false}) => {
+const ModalInput = ({label, isValid, placeholder,type, options, id, onChange, value, contain=false}) => {
     return type === 'text' ? ( 
         <div className={` flex  align-center space-between ${contain? 'input-container' : null}`}>
             {label ? <label htmlFor="">{label}</label> : null}

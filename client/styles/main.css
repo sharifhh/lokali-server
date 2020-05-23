@@ -22,12 +22,15 @@
 /* Navbar */
 
 @import './Navbar/base.css';
+@import './Navbar/nav-link.css';
 
 /* Activate Page */
 
 @import './activatePage//logo.css';
 @import './activatePage//contant.css';
 
+/* Msg */
+@import './message.css';
 /* temp */
 .errMsg{
     color:red;
@@ -36,4 +39,8 @@
     min-height: 30px;;
     opacity: 1;
     transition: opacity 1.4s ease;
+}
+
+.scroll{
+    overflow-y: scroll;
 }
