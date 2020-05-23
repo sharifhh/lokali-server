@@ -1,7 +1,8 @@
 module.exports = {
-    Offer: require('./Offer'),
+    GiftOffering: require('./GiftOffering'),
     User: require('./User'),
-    Request: require('./Event'),
+    Request: require('./HelpRequest'),
     Event: require('./Event'),
     Initiative: require('./Initiative'),
+    Review: require('./Review'),
 };
