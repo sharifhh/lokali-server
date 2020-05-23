@@ -26,8 +26,8 @@ const Profile = () => {
     useEffect(()=>{
         setWidget(window.cloudinary.createUploadWidget(
             {
-              cloudName: "explority",
-              uploadPreset: "instaclone",
+              cloudName: "dppogsm2u",
+              uploadPreset: "lokali",
               multiple: false,
               maxFileSize: 3500000
             },
