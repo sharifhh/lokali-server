@@ -19,11 +19,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-<<<<<<< HEAD
-    "npm start":"nodemon index.js"
-=======
+    "dev":"nodemon index.js",
     "start": "node index.js"
->>>>>>> b1491075f528f2a4f9d791e14a10244e3ed82e9c
   },
   "repository": {
     "type": "git",

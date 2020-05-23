@@ -42,7 +42,7 @@ const Signup = () => {
             console.log(res)
             if(res.data.code === USER_EXISTS_ERR_CODE) setMsg({text:USER_EXISTS_ERR, show:true})
             else{
-                let userId = res._id
+                let userId = res.data._id
                 router.push({pathname:ACTIVATION_ROUTE, query:{id:userId}})
             }
         }else if(!emailValidator(form.email)) setMsg({text:'Please provide a valid email', show:true, type:'err'}) 

@@ -6,36 +6,46 @@ import ModalButtonContainer from '../components/PopupModalDialog/ModalButtonCont
 import ModalButton from '../components/PopupModalDialog/ModalButton'
 import { useRouter } from 'next/router';
 import { AuthContext } from '../context/AuthContext';
-import { PASSWORD_DONT_MATCH_ERR } from '../constants';
+import { PASSWORD_DONT_MATCH_ERR, LOGGED_USER_KEY } from '../constants';
+import { saveToStorage, saveToSessionStorage } from '../utils';
 
 const Login = () => {
     const router = useRouter()
     const [isFirstTimeLogin, setIsFirstTimeLogin] = useState(true)
     const {verifyUser, login} = useContext(AuthContext) 
     useEffect(()=>{
-        console.log(router.query)
-    if(router.query.id) verifyEffect()
-    else setIsFirstTimeLogin(false)
-    },[router.query])
 
-    const  verifyEffect = async () => {
-        let userId = router.query.id
-        let res = await verifyUser(userId)
-        if(res) setForm({...form, email:res.email}) 
-    }
+        const  verifyEffect = async () => {
+            let userId = router.query.id
+            let res = await verifyUser(userId)
+            if(res) setForm({...form, email:res.email}) 
+        }
+
+        if(router.query.id) {
+            setIsFirstTimeLogin(true)
+            verifyEffect()
+        }
+        else {
+            setIsFirstTimeLogin(false)
+        }
+        },[router.query])
+
+
+        
     let [form, setForm] = useState({email:'',pass:'',passConf:''})
     let [errMsg, setErrMsg] = useState({show:false,msg:''})
     
     const handleChange  = e => setForm({...form, [e.target.id]:e.target.value })    
     
     const handleSubmit = async () =>{
-        if(form.pass === form.passConf && form.pass){
+        if(form.pass === form.passConf && form.pass || !isFirstTimeLogin){
            let res =  await login(form) 
            console.log(res)
             try{
                 router.push(`/profile/${res.data._id}`)
             }catch(e){
-                console.log('Something went wrong!')
+                setErrMsg({show:true, msg:'Wrong Info'})
+                
             }
         }else{
             setErrMsg({show:true, msg:PASSWORD_DONT_MATCH_ERR})

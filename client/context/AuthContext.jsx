@@ -1,14 +1,27 @@
 import axios from 'axios'
 import React, {createContext, useState, useEffect} from 'react';
 import { USER_EXISTS_ERR_CODE, LOGGED_USER_KEY, DEVELOPMENT_HOST } from '../constants';
-import { saveToStorage, loadFromStroge } from '../utils';
+import { saveToStorage, loadFromStroge, loadFromSessionStroge } from '../utils';
+import { useRouter } from 'next/router';
 
 export const AuthContext = createContext()
 
 const AuthContextProvider = ({children}) => {
 
+  const router = useRouter()
+  useEffect(()=>{
+    const checkForSession = async () => {
+        let res = await axios.get(`${DEVELOPMENT_HOST}/auth/check-session`, {withCredentials:true})
+        if(res.data && !router.pathname('/login')){
+          let userFromLocalStroge = loadFromSessionStroge(LOGGED_USER_KEY)
+          setCurrLoggedUser(userFromLocalStroge)
+        }else{
+          router.push('/signup')
+        }   
+    }
+    checkForSession()
 
-  useEffect(()=>{setCurrLoggedUser(loadFromStroge(LOGGED_USER_KEY))},[])
+  },[])
 
   const [currLoggedUser, setCurrLoggedUser] = useState(null)
   
