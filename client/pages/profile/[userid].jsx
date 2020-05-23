@@ -14,32 +14,38 @@ import { AuthContext } from '../../context/AuthContext';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
 import { getGeoLocWithLatAndLang } from '../../google-services';
 const Profile = () => {
-    useEffect(()=>{
-        console.log('From profile:' , sessionStorage)
-    },[])
-    const {currLoggedUser} = useContext(AuthContext)
+
+    const {currLoggedUser, setCurrLoggedUser} = useContext(AuthContext)
+
+    const [widget, setWidget] = useState(null)
     const getGeoLoc = async () =>{
         let res = await getGeoLocWithLatAndLang(43,34)
         console.log(res)
     }
-        // const myWidget = window.cloudinary.createUploadWidget(
-    //         {
-    //           cloudName:'dppogsm2u',
-    //           uploadPreset: 'lokali',
-    //           multiple: false,
-    //           maxFileSize: 3500000
-    //         },
-    //         (err, res) => {
-    //         console.log(res,err)
-    //         }
-    //       );
+
+    useEffect(()=>{
+        setWidget(window.cloudinary.createUploadWidget(
+            {
+              cloudName: "explority",
+              uploadPreset: "instaclone",
+              multiple: false,
+              maxFileSize: 3500000
+            },
+            (error, result) => {
+              if (!error && result && result.event === "success") {
+                setCurrLoggedUser({...currLoggedUser, profileImg:result.info.url})
+              }
+            }
+          )
+    )},[])
+  
     const [open, setOpen] = useState(true)
     const [currOnMainPage, setCurrOnMainPage] = useState(true)
     const router = useRouter()
 
 
     const openBadgesPanel = () => setCurrOnMainPage(false)
-    const openWidget = () =>{myWidget.open()}
+    const openWidget = () =>{widget.open()}
     
     return  currLoggedUser ? ( 
         <ModalOuterContainer open={open} height="600px" color="#fea53a">
@@ -48,7 +54,7 @@ const Profile = () => {
             <ModalInnerContainer>
                 <SidebarContainer>
                     <SidebarItem onClick={openWidget}>
-                        <p>Click to add your photo</p >
+                        <img style={{width:"100%", height:"100%", objectFit:"cover"}} src={currLoggedUser.profileImg} alt="profileImg"/>
                     </SidebarItem>
                     <SidebarItem onClick={openBadgesPanel}>
                         <button>Your Score and Badges</button >
