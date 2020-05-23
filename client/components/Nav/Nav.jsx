@@ -1,23 +1,31 @@
 import React, {useContext} from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import NavContainer from './NavContainer';
+import LinkContainer from './LinkContainer';
+import NavLink from './NavLink';
+import ModalButton from '../PopupModalDialog/ModalButton';
+import { useRouter } from 'next/router';
 const Nav = () => {
+  
+
   const {currLoggedUser} = useContext(AuthContext)
-  const openProfile = () =>{
-    
-  }
+  console.log(currLoggedUser)
+  const redirectSignup = () => router.push('/')
+  let router = useRouter()
   return ( 
-    <div className="nav flex space-evenly">
-      <img className="logo" src="../../static/logo.png" alt="logo"/>
-      <div className="links">
-        <div className="link">
-         <img onClick={openProfile} src="https://img.icons8.com/windows/24/000000/user.png"/>
-         profile
-        </div>
-      </div>
-      <div className="left-side-nav-container">
-        {currLoggedUser ?   <button className={styles.logoutBtn}>Log Out</button> : null}
-      </div>
+    <NavContainer className="flex">
+      <img src="../../static/logo-small.png" alt=""/>
+     {currLoggedUser ?
+      <LinkContainer>
+        <NavLink text="Home"/>
+        <NavLink text="Profile"/>
+        <NavLink text="Favorites"/>
+      </LinkContainer> : null}
+    <div className="flex align-center">
+    <input type="text"/>
+      <button>Logout</button>
     </div>
+    </NavContainer>
    );
 }
  

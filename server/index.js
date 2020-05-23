@@ -51,6 +51,9 @@ mongoose.connect(
   }
 );
 
+require('./routes/auth')(app);
+require('./routes/api/user')(app);
+
 // listen event
 app.listen(PORT, () => {
   console.log("listening on port " + PORT + "\nhttp://localhost:" + PORT);

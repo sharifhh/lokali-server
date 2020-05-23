@@ -2,12 +2,15 @@
 .flex{display:flex;}
 .column{flex-direction: column;}
 .align-center{align-items: center;}
+.align-end{align-items: flex-end;}
 .justify-center{justify-content: center;}
 .space-around{justify-content: space-around;}
 .space-between{justify-content: space-between;}
 .space-evenly{justify-content: space-evenly;}
 .self-center{align-self: center;}
 .self-right{align-self: flex-end;}
+.self-bottom{align-self: flex-end;}
+.justify-right{justify-content: flex-end;}
 
 /* General Design Patterns */
 
