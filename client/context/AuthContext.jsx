@@ -19,9 +19,10 @@ const AuthContextProvider = ({children}) => {
           console.log('USER', user.data)
           saveToSessionStorage(LOGGED_USER_KEY,  user.data)
           setCurrLoggedUser( user.data)
-        }else{
-          router.push('/signup')
-        }   
+        }
+        // else{
+        //   router.push('/signup')
+        // }   
     }
     checkForSession()
 
