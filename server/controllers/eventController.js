@@ -2,7 +2,7 @@ const db = require("../models");
 const connect = require('../dbConnection');
 
 module.exports = {
-    findAll: async function(req, res) {
+    findAll: function(req, res) {
         db.Event.find(req.query)
         .then(events => res.json(events))
         .catch(err => res.status(422).json(err));
