@@ -34,6 +34,7 @@ app.use(express.static('public'));
 // routes
 require('./routes/api')(app);
 require('./routes/auth')(app);
+require('./routes/api/user')(app);
 
 // listen event 
 app.listen(PORT, () => {

@@ -1,16 +1,16 @@
-import Head from '../components/head';
 import  AuthContextProvider  from '../context/AuthContext';
 import Signup from '../components/Signup/Signup';
+import Head from '../components/head'
 import Login from './login';
 
 
 
 export default () => (
   <div>
-    <AuthContextProvider>
-      <Head title="Home" />
-      <Signup/>
-    </AuthContextProvider>
+      <AuthContextProvider>
+        <Head title="Home" />
+        <Signup/>
+      </AuthContextProvider>
     
     
 
