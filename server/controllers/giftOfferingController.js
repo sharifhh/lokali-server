@@ -2,7 +2,13 @@ const db = require("../models");
 
 module.exports = {
     findAll: function(req, res) {
-      db.GiftOffering.find(req.query)
+      const { query } = req.query;
+    db.GiftOffering.find({
+      $or: [
+        { heading: { $regex: query, $options: "i" } },
+        { subheading: { $regex: query, $options: "i" } },
+      ],
+    })
         .then(giftOfferings => res.json(giftOfferings))
         .catch(err => res.status(422).json(err));
     },

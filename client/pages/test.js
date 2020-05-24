@@ -3,6 +3,7 @@ import EventForm from "../components/Forms/EventForm";
 import GiftOfferingForm from "../components/Forms/GiftOfferingForm";
 import HelpRequestForm from "../components/Forms/HelpRequestForm";
 import InitiativeForm from "../components/Forms/InitiativeForm";
+import SearchBar from "../components/Bar/SearchBar";
 function App() {
   return (
     <>
@@ -23,6 +24,13 @@ function App() {
             <InitiativeForm />
           </div>
         </div>
+        <div className="row">
+          <div className="col">
+            <SearchBar />
+          </div>
+        </div>
+        <div className="col">
+          </div>
       </div>
     </>
   );
