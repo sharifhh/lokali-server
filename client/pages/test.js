@@ -1,9 +1,29 @@
 import React from "react";
-import { Button } from "@material-ui/core";
+import EventForm from "../components/Forms/EventForm";
+import GiftOfferingForm from "../components/Forms/GiftOfferingForm";
+import HelpRequestForm from "../components/Forms/HelpRequestForm";
+import InitiativeForm from "../components/Forms/InitiativeForm";
 function App() {
   return (
     <>
-      <Button color="primary">Hello World</Button>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <EventForm />
+          </div>
+          <div className="col">
+            <GiftOfferingForm />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <HelpRequestForm />
+          </div>
+          <div className="col">
+            <InitiativeForm />
+          </div>
+        </div>
+      </div>
     </>
   );
 }

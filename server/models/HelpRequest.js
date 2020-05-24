@@ -3,7 +3,15 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const HelpRequestSchema = new Schema({
-  title: {
+  heading: {
+    type: String,
+    required: true,
+  },
+  subheading: {
+    type: String,
+    required: true,
+  },
+  summary: {
     type: String,
     required: true,
   },
@@ -12,30 +20,27 @@ const HelpRequestSchema = new Schema({
     required: true,
     default: "Development",
   },
+  location: {
+    type: String,
+    required: true,
+    default: "Development",
+  },
   category: {
     type: String,
     required: true,
-    default: "Development"
+    default: "Development",
   },
   createdAt: {
     type: Date,
     required: true,
     default: Date.now,
   },
-//   endDate: {
-//     type: Date,
-//     required: true,
-//   },
-  description: {
-    type: String,
-    required: true,
-  },
-  location: {
-    type: String,
-    required: true,
-    default: "Development"
-  },
-  
+  interestedUsers: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
 });
 
 const HelpRequest = mongoose.model("HelpRequest", HelpRequestSchema);
