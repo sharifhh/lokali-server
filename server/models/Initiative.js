@@ -26,18 +26,18 @@ const InitiativeSchema = new Schema({
     default: "Development",
   },
   // whichever user this post belongs to.
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
+  // author: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "User",
+  //   required: true,
+  // },
   createdAt: {
     type: Date,
     required: true,
     default: Date.now,
   },
-  timeOfInitiative: {},
-  dateOfInitiative: {},
+  // timeOfInitiative: { type: String, required: true },
+  // dateOfInitiative: { type: String, required: true },
   participants: [
     {
       type: Schema.Types.ObjectId,
