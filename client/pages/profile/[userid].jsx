@@ -12,22 +12,18 @@ import { SKILL_OPTIONS, HOBBY_OPTIONS } from '../../constants';
 import { useRouter } from 'next/router';
 import { AuthContext } from '../../context/AuthContext';
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute';
-import { getGeoLocWithLatAndLang } from '../../google-services';
 const Profile = () => {
 
     const {currLoggedUser, setCurrLoggedUser} = useContext(AuthContext)
 
     const [widget, setWidget] = useState(null)
-    const getGeoLoc = async () =>{
-        let res = await getGeoLocWithLatAndLang(43,34)
-        console.log(res)
-    }
+
 
     useEffect(()=>{
         setWidget(window.cloudinary.createUploadWidget(
             {
-              cloudName: "explority",
-              uploadPreset: "instaclone",
+              cloudName: "dppogsm2u",
+              uploadPreset: "lokali",
               multiple: false,
               maxFileSize: 3500000
             },
@@ -49,7 +45,7 @@ const Profile = () => {
     
     return  currLoggedUser ? ( 
         <ModalOuterContainer open={open} height="600px" color="#fea53a">
-            <button onClick={getGeoLoc}> GEO LOC</button>
+            {/* <button onClick={getGeoLoc}> GEO LOC</button> */}
             <ModalTitle title="My Profile"/>
             <ModalInnerContainer>
                 <SidebarContainer>
