@@ -83,6 +83,20 @@ module.exports = (app) => {
                 res.json(null)
             }
         }
+      );
+    } else {
+      try {
+        let { password } = userDB;
+        let passwordMatch = await bcrypt.compare(pass, password);
+        let resp = passwordMatch ? userDB : null;
+        if (resp) delete resp.password;
+        req.session.userId = userDB._id;
+        res.json(resp);
+      } catch (e) {
+        res.json(null);
+      }
+    }
+  });
 
     })
 
