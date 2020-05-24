@@ -6,8 +6,8 @@ const giftOfferingController = require("../../controllers/giftOfferingController
 
 router
   .route("/")
-  .get(eventController.findAll)
   .get(intitiativeController.findAll)
+  .get(eventController.findAll)
   .get(helpRequestController.findAll)
   .get(giftOfferingController.findAll);
 

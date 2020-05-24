@@ -3,12 +3,15 @@ const db = require("../models");
 module.exports = {
   findAll: function (req, res) {
     const { query } = req.query;
-    db.Initiative.find({
-      $or: [
-        { heading: { $regex: query, $options: "i" } },
-        { subheading: { $regex: query, $options: "i" } },
-      ],
-    })
+    (query || query === ""
+      ? db.Initiative.find({
+          $or: [
+            { heading: { $regex: query, $options: "i" } },
+            { subheading: { $regex: query, $options: "i" } },
+          ],
+        })
+      : db.Initiative.find(req.query)
+    )
       .then((initiatives) => res.json(initiatives))
       .catch((err) => res.status(422).json(err));
   },

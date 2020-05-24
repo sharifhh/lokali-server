@@ -4,12 +4,16 @@ const connect = require("../dbConnection");
 module.exports = {
   findAll: function (req, res) {
     const { query } = req.query;
-    db.Event.find({
-      $or: [
-        { heading: { $regex: query, $options: "i" } },
-        { subheading: { $regex: query, $options: "i" } },
-      ],
-    })
+    console.log(req);
+    (query || query === ""
+      ? db.Event.find({
+          $or: [
+            { heading: { $regex: query, $options: "i" } },
+            { subheading: { $regex: query, $options: "i" } },
+          ],
+        })
+      : db.Event.find(req.query)
+    )
       .then((events) => res.json(events))
       .catch((err) => res.status(422).json(err));
   },
