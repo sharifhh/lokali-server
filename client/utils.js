@@ -6,8 +6,13 @@ export const capitalize = (w) =>{
 }
 
 
-export const saveToStorage = (k,v) =>  localStorage.setItem(k , JSON.stringify(v))
-export const saveToSessionStorage = (k,v) =>  sessionStorage.setItem(k , JSON.stringify(v))
+export const saveToStorage = (k,v) => {
+    localStorage.setItem(k , JSON.stringify(v))
+}
+export const saveToSessionStorage = (k,v) => {
+    console.log('conts', v)
+    sessionStorage.setItem(k , JSON.stringify(v))
+}
 
 export const loadFromStroge = k => {
     let str = localStorage.getItem(k)
