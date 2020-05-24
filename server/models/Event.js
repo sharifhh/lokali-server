@@ -26,18 +26,18 @@ const EventSchema = new Schema({
     default: "Development",
   },
   // whichever user this post belongs to.
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
+  // author: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "User",
+  //   required: true,
+  // },
   createdAt: {
     type: Date,
     required: true,
     default: Date.now,
   },
-  timeOfEvent: {},
-  dateOfEvent: {},
+  timeOfEvent: { type: String, required: true },
+  dateOfEvent: { type: String, required: true },
   participants: [
     {
       type: Schema.Types.ObjectId,
