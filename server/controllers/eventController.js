@@ -13,8 +13,7 @@ module.exports = {
         .catch(err => res.status(422).json(err));
     },
     create: function(req, res) {
-      console.log(req.body);
-      db.Event.create(req.body)
+      db.Event.create({...req.body,author:req.session.userId})
         .then(event => res.json(event))
         .catch(err => res.status(422).json(err));
     },

@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ModalInnerSection = ({children, enableScroll=false}) => {
+const ModalInnerSection = ({children, enableScroll=false, align}) => {
     return ( 
-        <div className={`inner-section flex column ${enableScroll ? 'scroll' : ''}`}>
+        <div className={`inner-section flex column ${enableScroll ? 'scroll' : ''} ${align}`}>
             {children}
         </div>
      );

@@ -25,12 +25,11 @@ const EventSchema = new Schema({
     required: true,
     default: "Development",
   },
-  // whichever user this post belongs to.
-  // author: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "User",
-  //   required: true,
-  // },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   createdAt: {
     type: Date,
     required: true,

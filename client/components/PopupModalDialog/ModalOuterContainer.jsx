@@ -2,6 +2,7 @@ import React from 'react';
 import {Modal} from '@material-ui/core'
 
 const ModalOuterContainer = ({children, open=true, color="" ,border="none", height=""}) => {
+    console.log(color)
     return ( 
     <Modal open={open}>
         <div
