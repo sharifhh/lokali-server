@@ -41,7 +41,11 @@ const SearchBar = () => {
       </div>
       <div className="row">
         {results.map((item, index) => (
-          <div key={index} className="col">
+          <div
+            key={index}
+            style={{ border: "2px solid black" }}
+            className="col"
+          >
             <p>{item.type}</p>
             <p>{item.createdAt}</p>
             <p>{item.heading}</p>
