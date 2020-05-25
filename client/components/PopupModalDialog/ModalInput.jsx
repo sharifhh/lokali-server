@@ -8,9 +8,10 @@ const ModalInput = ({
   id,
   onChange,
   value,
+  defaultOpt,
   contain = false
 }) => {
-  return type  ? (
+  return type ? (
     <div
       className={` flex  align-center space-between ${
         contain ? 'input-container' : null
@@ -36,6 +37,9 @@ const ModalInput = ({
         className='modal-select'
         name={value}
       >
+        <option selected disabled>
+          {defaultOpt}
+        </option>
         {options.map(opt => (
           <option value={opt} key={opt}>
             {opt}
