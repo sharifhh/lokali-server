@@ -27,14 +27,14 @@ const SearchBar = () => {
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>
-        <div>
+        {/* <div>
           <select onChange={(event) => setType(event.target.value)}>
             <option value="giftofferings">Gift Offerings</option>
             <option value="helprequests">Help Requests</option>
             <option value="events">Events</option>
             <option value="initiatives">Initiatives</option>
           </select>
-        </div>
+        </div> */}
         <div>
           <button onClick={searchFunction}>Search</button>
         </div>
