@@ -39,10 +39,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 // routes
-require("./routes/auth")(app);
-
 app.use(api);
-
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/local-lokali",
   {

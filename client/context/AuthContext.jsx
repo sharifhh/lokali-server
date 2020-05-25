@@ -25,9 +25,9 @@ const AuthContextProvider = ({ children }) => {
         //
       }
       //
-      else {
-        router.push("/signup");
-      }
+      // else {
+      //   router.push("/signup");
+      // }
     };
     checkForSession();
   }, []);
