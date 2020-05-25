@@ -10,7 +10,7 @@ const SearchBar = () => {
 
   const searchFunction = () => {
     axios
-      .get(`http://localhost:4000/api/posts/${type}`, { params: { query } })
+      .get(`http://localhost:4000/api/posts`, { params: { query } })
       .then((response) => {
         console.log(response.data);
         setResults(response.data);
@@ -43,6 +43,7 @@ const SearchBar = () => {
         {results.map((item, index) => (
           <div key={index} className="col">
             <p>{item.type}</p>
+            <p>{item.createdAt}</p>
             <p>{item.heading}</p>
             <p>{item.subheading}</p>
             <p>{item.summary}</p>
