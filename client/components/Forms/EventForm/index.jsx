@@ -33,7 +33,7 @@ const EventForm = () => {
 
     if (!errors.length) {
       axios
-        .post("http://localhost:4000/api/posts/events", formState)
+        .post("http://localhost:4000/api/posts/events", formState, {withCredentials:true})
         .then((data) => console.log(data))
         .catch((error) => console.log(error))
         .finally(setFormState(initialFormState));

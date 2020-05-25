@@ -17,9 +17,9 @@ const Nav = () => {
       <img src="../../static/logo-small.png" alt=""/>
      {currLoggedUser ?
       <LinkContainer>
-        <NavLink text="Home"/>
-        <NavLink text="Profile"/>
-        <NavLink text="Favorites"/>
+        <NavLink path="/home" text="Home"/>
+        <NavLink path="/profile" text="Profile"/>
+        <NavLink path="/fevorites" text="Favorites"/>
       </LinkContainer> : null}
     <div className="flex align-center">
     <input type="text"/>

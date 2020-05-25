@@ -13,6 +13,7 @@ router.use("/api/posts/events", eventsRoutes);
 router.use("/api/posts/giftofferings", giftOfferingsRoutes);
 router.use("/api/posts/helprequests", helpRequestsRoutes);
 router.use("/api/posts/initiatives", initiativesRoutes);
+router.use("/api/posts/posts", postsRoutes);
 router.use("/api/reviews", reviewsRoutes);
 router.use("/api/opendata/users", usersRoutes); 
 

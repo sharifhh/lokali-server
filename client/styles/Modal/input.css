@@ -7,7 +7,7 @@
 }
 
 .modal-select{
-    width:150px;;
+    width:50%;
     background: var(--input-bg);
     border:none;
     padding:8px;

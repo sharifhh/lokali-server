@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const EventSchema = new Schema({
-  heading: {
+const PostSchema = new Schema({
+  title: {
     type: String,
     required: true,
   },
-  subheading: {
+  subtitle: {
     type: String,
     required: true,
   },
@@ -25,17 +25,6 @@ const EventSchema = new Schema({
     required: true,
     default: "Development",
   },
-  type: {
-    type: String,
-    required: true,
-    default: "Event",
-  },
-  // whichever user this post belongs to.
-  // author: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "User",
-  //   required: true,
-  // },
   author: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -46,8 +35,8 @@ const EventSchema = new Schema({
     required: true,
     default: Date.now,
   },
-  timeOfEvent: { type: String, required: true },
-  dateOfEvent: { type: String, required: true },
+  time: { type: String },
+  date: { type: String },
   participants: [
     {
       type: Schema.Types.ObjectId,
@@ -71,6 +60,6 @@ const EventSchema = new Schema({
   //   },
 });
 
-const Event = mongoose.model("Event", EventSchema);
+const Post = mongoose.model("Post", PostSchema);
 
-module.exports = Event;
+module.exports = Post;
