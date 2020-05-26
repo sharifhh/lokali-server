@@ -5,4 +5,5 @@ module.exports = {
     Event: require('./Event'),
     Initiative: require('./Initiative'),
     Review: require('./Review'),
+    Post: require('./Post'),
 };

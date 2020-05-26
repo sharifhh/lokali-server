@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Modal, Card } from "@material-ui/core";
-
+import axios from 'axios'
 import ModalOuterContainer from "../../components/PopupModalDialog/ModalOuterContainer";
 import ModalHeader from "../../components/PopupModalDialog/ModalHeader";
 import ModalInnerContainer from "../../components/PopupModalDialog/ModalInnerContainer";
@@ -33,7 +33,11 @@ const PostCard = (props) => {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const handleBid = async () =>{
+    console.log(props.id)
+    let res = await axios.post('http://localhost:4000/api/posts/items', props.id)
+    console.log(res)
+  }
   return (
     <>
       <div
@@ -142,7 +146,7 @@ const PostCard = (props) => {
               </ModalInnerContainer>
               <ModalButtonContainer>
                 <ModalButton onClick={handleClose}>Cancel</ModalButton>
-                <ModalButton>Bid</ModalButton>
+                <ModalButton text="Bid" onClick={handleBid}/>
               </ModalButtonContainer>
             </ModalOuterContainer>
           </Modal>

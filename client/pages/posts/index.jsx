@@ -37,7 +37,7 @@ export default () => {
             {posts
               .filter((item) => item.type === "event")
               .map((item, index) => (
-                <PostCard key={index} {...item} />
+                <PostCard id={index} key={index} {...item} />
               ))}
           </div>
           <div className="postsContainer | col-xs-12 col-lg-8 d-flex overflow-auto">
@@ -48,7 +48,7 @@ export default () => {
               {posts
                 .filter((item) => item.type !== "event")
                 .map((item, index) => (
-                  <PostCard key={index} {...item} />
+                  <PostCard  id={index} key={index} {...item} />
                 ))}
             </div>
           </div>

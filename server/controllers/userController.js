@@ -17,6 +17,17 @@ module.exports = {
       })
       .catch((err) => res.status(422).json(err));
   },
+
+    
+  create: function (req, res) {
+    db.User.create(req.params.id)
+      .then((user) => {
+        const { name, surname, _id } = user;
+        user = { name, surname, _id };
+        res.json(user);
+      })
+      .catch((err) => res.status(422).json(err));
+  },
   findById: function (req, res) {
     db.User.findById(req.params.id)
       .then((user) => {
