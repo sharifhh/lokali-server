@@ -22,6 +22,7 @@ export default () => {
     description: "",
     category: "",
     location: "",
+    author: "Development",
   });
 
   const handleInputChange = (key, value) => {
