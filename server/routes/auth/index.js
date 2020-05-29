@@ -7,7 +7,8 @@ const {
   EMAIL_HTML_TEMPLATE,
   GMAIL_ACCESS_CORDS,
   encrypt,
-  decrypt
+  decrypt,
+  sendMail
 } = require('../../constants')
 
 module.exports = app => {
@@ -92,30 +93,6 @@ module.exports = app => {
       console.error(e)
       res.status(404).end('User not found')
     }
-
-    let transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      auth: {
-        type: 'OAuth2',
-        ...GMAIL_ACCESS_CORDS
-      }
-    })
-    // send mail with defined transport object
-    try {
-      let info = await transporter.sendMail({
-        from: process.env.SENDER_ADDRESS, // sender address
-        to: email, // list of receivers
-        subject: 'Lokali Activation Email', // Subject line
-        text: '', // plain text body
-        html: EMAIL_HTML_TEMPLATE(id) // html body
-      })
-      res.send('Mail has been sent!')
-    } catch (e) {
-      console.log('------------------------------')
-      console.log('------------------------------')
-      console.log(e)
-      console.log('------------------------------')
-      console.log('------------------------------')
-    }
+    sendMail(email, 'Lokali Activation Email', EMAIL_HTML_TEMPLATE(id))
   })
 }
