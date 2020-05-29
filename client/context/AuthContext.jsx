@@ -22,12 +22,11 @@ const AuthContextProvider = ({ children }) => {
         let user = await axios.get(`${DEVELOPMENT_HOST}/api/users/${res.data}`);
         saveToSessionStorage(LOGGED_USER_KEY, user.data);
         setCurrLoggedUser(user.data);
-        //
       }
-      //
-      else {
-        router.push("/signup");
-      }
+      /// Redirect back to signup if no session found. 
+      // else {
+      //   router.push("/signup");
+      // }
     };
     checkForSession();
   }, []);

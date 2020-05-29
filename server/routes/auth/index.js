@@ -6,8 +6,6 @@ const sessionMiddleware = require('../../middleware/session-middleware')
 const {
   EMAIL_HTML_TEMPLATE,
   GMAIL_ACCESS_CORDS,
-  encrypt,
-  decrypt,
   sendMail
 } = require('../../constants')
 
@@ -16,7 +14,6 @@ module.exports = app => {
     let { id } = req.params
     await connectToDB()
     try {
-      id = decrypt(id)
       await db.User.findOneAndUpdate(
         { _id: id },
         { verified: true },
@@ -88,7 +85,6 @@ module.exports = app => {
     try {
       let user = await db.User.findOne({ _id: id })
       email = user.email
-      id = encrypt(id)
     } catch (e) {
       console.error(e)
       res.status(404).end('User not found')

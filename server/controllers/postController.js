@@ -1,5 +1,6 @@
 const db = require('../models')
 const { sendMail } = require('../constants')
+const { eventBid } = require('../htmlTemplates')
 module.exports = {
   findAll: function (req, res) {
     db.Post.find(req.query)
@@ -29,15 +30,23 @@ module.exports = {
   },
 
   addBid: async function (req, res) {
-    console.log('REQ.BODY', req.body)
-    let authorEmail = await db.User.findOne({ _id: req.body.authorId }, 'email')
+    let postId = '5ecbf94b4f7b410e687aed0f'
+    let author = await db.User.findOne({ _id: req.body.authorId })
     let bidder = await db.User.findOne({ _id: req.body.loggedUserId })
-    console.log(authorEmail)
+    console.log(author.email)
     sendMail(
-      authorEmail,
-      `New Bid from ${bidder.name}`,
-      (html = ''),
-      (text = 'new bid')
+      (to = author.email),
+      (subject = `New Bid from ${bidder.name}`),
+      (html = eventBid(author, bidder, {
+        title: 'Dinner with friends',
+        _id: postId
+      })),
+      (text = 'new bid xx')
     )
+  },
+  confirmBid: async function (req, res) {
+    const { author, bidder, post } = req.body
+    let users = await db.User.find({ _id: { $in: [author, bidder] }}, 'email' )
+    console.log(users)
   }
 }

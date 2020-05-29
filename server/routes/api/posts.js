@@ -15,5 +15,5 @@ router
   .delete(postController.remove)
 
 router.route('/bid/new').post(postController.addBid)
-
+router.route('/bid/confirm').post(postController.confirmBid)
 module.exports = router

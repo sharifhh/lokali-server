@@ -64,7 +64,5 @@ const sendMail = async (
 module.exports = {
   EMAIL_HTML_TEMPLATE,
   GMAIL_ACCESS_CORDS,
-  encrypt,
-  decrypt,
   sendMail
 }
