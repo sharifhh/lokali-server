@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import ModalInput from '../PopupModalDialog/ModalInput';
+import { SKILL_OPTIONS, HOBBY_OPTIONS } from '../../constants'
 
 const Details = ({currLoggedUser}) => {
     return ( 

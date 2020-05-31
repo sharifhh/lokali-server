@@ -8,7 +8,6 @@ import SidebarItem from '../../components/PopupModalDialog/SidebarItem'
 import SidebarContainer from '../../components/PopupModalDialog/SidebarContainer'
 import ModalButtonContainer from '../../components/PopupModalDialog/ModalButtonContainer'
 import ModalButton from '../../components/PopupModalDialog/ModalButton'
-import { SKILL_OPTIONS, HOBBY_OPTIONS } from '../../constants'
 import { useRouter } from 'next/router'
 import { AuthContext } from '../../context/AuthContext'
 import ProtectedRoute from '../../components/ProtectedRoute/ProtectedRoute'
@@ -51,7 +50,6 @@ const Profile = () => {
 
   return currLoggedUser ? (
     <ModalOuterContainer open={open} height='600px' color='#fea53a'>
-      {/* <button onClick={getGeoLoc}> GEO LOC</button> */}
       <ModalTitle title='My Profile' />
       <ModalInnerContainer>
         <SidebarContainer>

@@ -1,3 +1,4 @@
+const mongoose = require('mongoose')
 const db = require('../models')
 const { sendMail } = require('../constants')
 const { eventBid } = require('../htmlTemplates')
@@ -46,7 +47,18 @@ module.exports = {
   },
   confirmBid: async function (req, res) {
     const { author, bidder, post } = req.body
-    let users = await db.User.find({ _id: { $in: [author, bidder] }}, 'email' )
-    console.log(users)
+    let users = await db.User.find({ _id: { $in: [author, bidder] } }, 'email')
+    let usersEmail = users.map(user => user.email)
+    try {
+      // await sendMail((to = usersEmail), (subjet = 'Confirmation on bid!'))
+      // let updatedUser = await db.User.update(
+      //   { _id: bidder },
+      //   { $push: { upcomingActivities: mongoose.Types.ObjectId(post) } }
+      // )
+      console.log(updatedUser)
+      res.json(updatedUser)
+    } catch (e) {
+      console.log('Email was not sent now try again!!!')
+    }
   }
 }

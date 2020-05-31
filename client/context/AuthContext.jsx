@@ -18,6 +18,7 @@ const AuthContextProvider = ({ children }) => {
       let res = await axios.get(`${DEVELOPMENT_HOST}/auth/check-session`, {
         withCredentials: true,
       });
+      console.log('session', res)
       if (res.data) {
         let user = await axios.get(`${DEVELOPMENT_HOST}/api/users/${res.data}`);
         saveToSessionStorage(LOGGED_USER_KEY, user.data);
@@ -29,7 +30,7 @@ const AuthContextProvider = ({ children }) => {
       // }
     };
     checkForSession();
-  }, []);
+  }, [router.pathname]);
 
   //Initial signup for new users
   const signup = async (user) => {
