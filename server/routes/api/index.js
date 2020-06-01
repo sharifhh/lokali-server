@@ -7,12 +7,12 @@ const initiativesRoutes = require("./initiatives");
 const reviewsRoutes = require("./reviews");
 const searchRoutes = require("./search");
 const usersRoutes = require("./users");
-
-router.use("/api/posts/", searchRoutes);
-router.use("/api/posts/events", eventsRoutes);
-router.use("/api/posts/giftofferings", giftOfferingsRoutes);
-router.use("/api/posts/helprequests", helpRequestsRoutes);
-router.use("/api/posts/initiatives", initiativesRoutes);
+const postRoutes = require('./posts');
+router.use("/api/posts/", postRoutes);
+// router.use("/api/posts/events", eventsRoutes);
+// router.use("/api/posts/giftofferings", giftOfferingsRoutes);
+// router.use("/api/posts/helprequests", helpRequestsRoutes);
+// router.use("/api/posts/initiatives", initiativesRoutes);
 router.use("/api/reviews", reviewsRoutes);
 router.use("/api/opendata/users", usersRoutes); 
 

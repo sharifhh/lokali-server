@@ -3,6 +3,7 @@ import axios from "axios";
 
 const EventForm = () => {
   const initialFormState = {
+    type: "event",
     heading: "",
     subheading: "",
     summary: "",
@@ -33,7 +34,7 @@ const EventForm = () => {
 
     if (!errors.length) {
       axios
-        .post("http://localhost:4000/api/posts/events", formState)
+        .post("http://localhost:4000/api/posts", formState)
         .then((data) => console.log(data))
         .catch((error) => console.log(error))
         .finally(setFormState(initialFormState));
