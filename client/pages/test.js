@@ -12,17 +12,8 @@ function App() {
           <div className="col">
             <EventForm />
           </div>
-          <div className="col">
-            <GiftOfferingForm />
-          </div>
         </div>
         <div className="row">
-          <div className="col">
-            <HelpRequestForm />
-          </div>
-          <div className="col">
-            <InitiativeForm />
-          </div>
         </div>
         <div className="row">
           <div className="col">

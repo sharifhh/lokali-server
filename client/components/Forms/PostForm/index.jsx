@@ -26,7 +26,8 @@ const EventForm = () => {
   const handleSubmit = () => {
     const errors = {};
     for (const property in formState) {
-      if (!formState[property]) errors[property] = formState[property];
+      if (!formState[property])
+        errors[property] = formState[property];
     }
     setCheckedErrors(errors);
     console.log(errors);
@@ -43,14 +44,7 @@ const EventForm = () => {
   return (
     <>
       <form className="container d-flex flex-column">
-        <h1>Create New Post</h1>
-        <label>Choose the type of post</label>
-        <select onChange={(event) => handleChange("type", event.target.value)}>
-          <option value="event">Event</option>
-          <option value="intiative">Initiative</option>
-          <option value="giftoffering">Gift Offering</option>
-          <option value="helprequest">Help Request</option>
-        </select>
+        <h1>Create New Event</h1>
         <label>Heading</label>
         <input
           className={`${checkedErrors.heading === "" && "errorbox"}`}
