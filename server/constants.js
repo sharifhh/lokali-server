@@ -47,6 +47,7 @@ const sendMail = async (
       ...GMAIL_ACCESS_CORDS
     }
   })
+
   // send mail with defined transport object
   try {
     let info = await transporter.sendMail({
@@ -56,15 +57,16 @@ const sendMail = async (
       text, // plain text body
       html // html body
     })
+    return info
   } catch (e) {
+    console.log('********************************')
     console.log(e)
+    console.log('********************************')
   }
 }
 
 module.exports = {
   EMAIL_HTML_TEMPLATE,
   GMAIL_ACCESS_CORDS,
-  encrypt,
-  decrypt,
   sendMail
 }

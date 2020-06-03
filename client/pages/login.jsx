@@ -46,7 +46,7 @@ const Login = () => {
     } else {
       let res = await login(form)
       console.log(res)
-      if(res) router.push({pathname:`/profile/${res._id}`})
+      if(res) router.push({pathname:`/posts`})
     }
   }
   return (

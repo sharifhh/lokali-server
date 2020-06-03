@@ -1,12 +1,6 @@
 .sidebar-item{
-    background: var(--sidebar-item-bg);
-    height: 50%;
-    margin: 8px;
-    padding: 23px;
-    font-size: 16px;
-    color: white;
-    border-radius: var(--small-radius);
-
+    flex:1;
+    border:1px solid;
 }
 .sidebar-item button{
     background: none;

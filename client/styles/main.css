@@ -44,3 +44,22 @@
 .scroll{
     overflow-y: scroll;
 }
+.profile-test{
+    margin-top:50px;
+    font-family: Verdana;;
+}
+
+.info{
+    padding:10px;
+    margin:10px 
+}
+.profile-test h1{
+    margin-bottom:10px;
+    font-size: 40px;
+    
+}
+
+.profile-test h2{
+    opacity: .3;
+    font-size: 25px;
+}
