@@ -30,6 +30,11 @@ const HelpRequestSchema = new Schema({
     required: true,
     default: "Development",
   },
+  type: {
+    type: String,
+    required: true,
+    default: "Help Request",
+  },
   createdAt: {
     type: Date,
     required: true,

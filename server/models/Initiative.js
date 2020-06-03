@@ -25,6 +25,11 @@ const InitiativeSchema = new Schema({
     required: true,
     default: "Development",
   },
+  type: {
+    type: String,
+    required: true,
+    default: "Initiative",
+  },
   // whichever user this post belongs to.
   // author: {
   //   type: Schema.Types.ObjectId,

@@ -30,6 +30,11 @@ const GiftOfferingSchema = new Schema({
     required: true,
     default: "Development",
   },
+  type: {
+    type: String,
+    required: true,
+    default: "Gift Offering",
+  },
   createdAt: {
     type: Date,
     required: true,
