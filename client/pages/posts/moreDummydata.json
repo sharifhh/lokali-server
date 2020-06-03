@@ -1,0 +1,32 @@
+[
+    {
+        "type": "event",
+        "title": "Shabbar Dinner",
+        "tags": [
+            "food",
+            "jewish",
+            "culture"
+        ],
+        "location": "Jerusalem, Israel",
+        "time": "19:45",
+        "frequancy":"weekly",
+        "participants":[],
+        "date": "12/11/2020",
+        "desc": "Next Shabbat ill host a top shabbat dinner in my humble residance near the old city. 3 stage meal and more stuff. Feel free to join"
+    },
+    {
+        "type": "initiative",
+        "title": "Building a Gym",
+        "tags": [
+            "sport",
+            "fitness",
+            "handyman"
+        ],
+        "location": "Emek Hefer, Israel",
+        "time": "any",
+        "frequancy":"weekly",
+        "participants":[],
+        "date": "14/02/2017",
+        "desc": "I am fat and lazy and the summer is almost here. Who's up for some lifting and building the perfet body for the beach? My wish is to build a gym in our small community so that everyone could enjoy. Please contact me if you feel that it's time for a change"
+    }
+]

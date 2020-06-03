@@ -31,6 +31,10 @@
 
 /* Msg */
 @import './message.css';
+
+/* Postcard */
+@import './PostCard/post-card.css';
+@import './posts-navbar.css';
 /* temp */
 .errMsg{
     color:red;

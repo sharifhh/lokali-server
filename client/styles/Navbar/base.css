@@ -1,6 +1,7 @@
 .nav-container{
     height:var(--nav-height);
     background-color:var(--main-color);
+    width:100%;
 
     
     

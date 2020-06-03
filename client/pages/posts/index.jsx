@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect, useContext } from 'react'
 
 import Head from '../../components/head'
-
+import CreatePostForm from '../../components/CreatePostForm/CreatePostForm'
 import data from './dummyData.json'
 import PostCard from '../../components/post-card'
+import { PostContext } from '../../context/PostContext'
+import PostsNavbar from '../../components/PostsNavbar/PostsNavbar'
 
 export default () => {
+  const { queryPosts } = useContext(PostContext)
   const [posts, setPosts] = useState([...data])
+  const [currPage, setCurrPage] = useState('posts')
   const [formState, setFormState] = useState({
     type: 'Select Type',
     title: '',
@@ -16,45 +19,47 @@ export default () => {
     location: '',
     author: 'Development'
   })
-  //   useEffect(() => {
-  //     axios.get("http://localhost:4000/api/posts/offers").then((response) => {
-  //       const { data } = response;
-  //       console.log(data);
-  //       setPosts(data);
-  //     });
-  //   }, []);
+  useEffect(() => {
+    const getPosts = async () => {
+      let posts = await queryPosts('', currPage)
+      setPosts(posts)
+      console.log(posts)
+    }
+    getPosts()
+  }, [currPage])
   const handleInputChange = (key, value) => {
     setFormState({ ...formState, [key]: value })
   }
   return (
-    <>
-      <Head />
-      <div className='container-fluid'>
-        <div className='row no-gutters'>
-          <div
-            className='eventsContainer |  container-fluid col-xs-12 col-lg-4 d-flex overflow-auto flex-column align-items-center'
-            style={{ height: '90vh' }}
-          >
-            {posts
-              .filter(item => item.type === 'event')
-              .map((item, index) => (
-                <PostCard key={index} {...item} />
-              ))}
-          </div>
-          <div className='postsContainer | col-xs-12 col-lg-8 d-flex overflow-auto'>
-            <div
-              className='container-fluid d-flex flex-wrap justify-content-center align-content-start'
-              style={{ height: '90vh' }}
-            >
-              {posts
-                .filter(item => item.type !== 'event')
-                .map((item, index) => (
-                  <PostCard key={index} {...item} />
-                ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className='flex column align-center'>
+      <CreatePostForm/>
+      <PostsNavbar setCurrPage={setCurrPage}/>
+      
+      {currPage === 'posts' ? (
+        posts
+          .filter(post => post.type !== 'event' || post.type !== 'initiative')
+          .map(post => (
+            <PostCard
+              title={post.title}
+              desc={post.desc}
+              location={post.location}
+              tags={post.tags}
+              type={post.type}
+            />
+          ))
+      ) : (
+        posts
+        .filter(post => post.type === 'event' || post.type === 'initiative')
+        .map(post => (
+          <PostCard
+            title={post.title}
+            desc={post.desc}
+            location={post.location}
+            tags={post.tags}
+            type={post.type}
+          />
+        ))
+      )}
+    </div>
   )
 }
