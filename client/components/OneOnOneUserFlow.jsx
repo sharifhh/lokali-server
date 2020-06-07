@@ -7,24 +7,22 @@ import TypeContainer from '../components/typeContainer'
 
 import Step from '../components/Step'
 
-const OneonOneUserFlow = () => {
-    const {
-        currStep,
-        setCurrStep,
-        createPostForm,
-        setCreatePostForm
-      } = useContext(PostContext)
-      const renderOptions = () => {
-        if (createPostForm.type === 'request') {
-          return REQUEST_ACTION_ITEMS.map(item => <option>{item}</option>)
-        }
-        if (createPostForm.type === 'offer') {
-          return OFFER_ACTION_ITEMS.map(item => <option>{item}</option>)
-        }
-      }
-    return ( 
-        <div>
-
+const OneonOneUserFlow = ({handleChange}) => {
+  const {
+    currStep,
+    setCurrStep,
+    createPostForm,
+  } = useContext(PostContext)
+  const renderOptions = () => {
+    if (createPostForm.type === 'request') {
+      return REQUEST_ACTION_ITEMS.map(item => <option>{item}</option>)
+    }
+    if (createPostForm.type === 'offer') {
+      return OFFER_ACTION_ITEMS.map(item => <option>{item}</option>)
+    }
+  }
+  return (
+    <div>
       {currStep === 2 && (
         <Step title='Details' count={2}>
           <div>
@@ -32,14 +30,12 @@ const OneonOneUserFlow = () => {
             <input type='text' />
           </div>
 
-              <div>
-                <label htmlFor=''>Choose Action</label>
-                <select name='' id=''>
-                  {renderOptions()}
-                </select>
-              </div>
-            ))}
-          <button onClick={() => setCurrStep(currStep + 1)}>Next</button>
+          <div>
+            <label htmlFor=''>Choose Action</label>
+            <select name='' id=''>
+              {renderOptions()}
+            </select>
+          </div>
         </Step>
       )}
       {currStep === 3 && (
@@ -58,8 +54,8 @@ const OneonOneUserFlow = () => {
           <input type='text' />
         </Step>
       )}
-        </div>
-     );
+    </div>
+  )
 }
- 
-export default OneonOneUserFlow;
+
+export default OneonOneUserFlow

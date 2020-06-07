@@ -38,6 +38,10 @@ const OneonOnePostSchema = new Schema({
     required: true,
     default: null
   },
+  action:{
+    type:String,
+    required:true
+  },
   desc: {
     type: String,
     trim:true,

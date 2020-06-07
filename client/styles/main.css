@@ -64,13 +64,22 @@
 }
 
 .step{
-    border:3px solid gray;
+    height:70vh;
     padding:10px;
-    margin:5px 0;
+    background:whitesmoke;
+    transition: all 1s;
+    position: relative;
+    animation: slide .6s;
 }
 .step h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size:18px;
+}
+.step span{
+    border:1px solid;
+    padding:10px;
+    width:150px;
+    height:160px;
 }
 
 .type-div{
@@ -83,5 +92,10 @@
 .type-container{
     display:grid;
     grid-gap: 20px;
+    width:100%;
     grid-template-columns: repeat(2, 1fr);
+}
+@keyframes slide{
+    from{right:1000px}
+    to{right:0px}
 }

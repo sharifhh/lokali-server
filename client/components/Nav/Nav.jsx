@@ -16,6 +16,7 @@ const Nav = () => {
       <a href='/publish'>
         <button>Create Post</button>
       </a>
+      <a href="/posts">Go home</a>
     </NavContainer>
   )
 }

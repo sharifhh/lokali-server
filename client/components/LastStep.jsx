@@ -4,23 +4,25 @@ import { FREQUANCY_OPTIONS } from '../constants'
 
 import Step from './Step'
 
-const LastStep = ({count}) => {
+const LastStep = ({ count }) => {
   const {
     currStep,
     setCurrStep,
     createPostForm,
     setCreatePostForm
   } = useContext(PostContext)
-  const handleSubmit = () =>{
+  const handleSubmit = () => {
     console.log(createPostForm)
   }
   const addTag = e => {
     if (e.key === 'Enter' && e.target.value) {
-      setCreatePostForm({
-        ...createPostForm,
-        tags: [...createPostForm.tags, e.target.value]
-      })
-      e.target.value = ''
+      if (createPostForm.tags.length < 5) {
+        setCreatePostForm({
+          ...createPostForm,
+          tags: [...createPostForm.tags, e.target.value]
+        })
+        e.target.value = ''
+      }
       console.log(createPostForm.tags)
     }
   }
@@ -52,9 +54,9 @@ const LastStep = ({count}) => {
           <label htmlFor=''>tags</label>
           <input type='text' onKeyPress={addTag} />
           {renderTags()}
+          <button onClick={handleSubmit}>Finish</button>
         </Step>
       )}
-      <button onClick={handleSubmit}>Finish</button>
     </div>
   )
 }

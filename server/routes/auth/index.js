@@ -2,7 +2,6 @@ const db = require('../../models')
 const connectToDB = require('../../dbConnection')
 const bcrypt = require('bcrypt')
 const nodemailer = require('nodemailer')
-const sessionMiddleware = require('../../middleware/session-middleware')
 const {
   EMAIL_HTML_TEMPLATE,
   GMAIL_ACCESS_CORDS,
