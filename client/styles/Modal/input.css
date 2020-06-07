@@ -3,11 +3,11 @@
     border:none;
     margin: 6px 0;
     padding:8px;
-    width:50%;
+    width:75%;
 }
 
 .modal-select{
-    width:150px;;
+    width:80%;;
     background: var(--input-bg);
     border:none;
     padding:8px;

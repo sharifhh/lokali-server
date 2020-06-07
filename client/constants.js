@@ -95,3 +95,7 @@ export const HOBBY_OPTIONS = [
     'Animal Care Volunteer Work',
     'Dancing'
     ]
+
+export const REQUEST_ACTION_ITEMS = ['Ask for something', 'Borrow Something', 'Ask for Time']    
+export const OFFER_ACTION_ITEMS = ['Give some away', 'Lend Something', 'Give time']    
+export const FREQUANCY_OPTIONS = ['Daily', 'Weekly', 'Monthly']    

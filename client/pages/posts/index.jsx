@@ -32,7 +32,6 @@ export default () => {
   }
   return (
     <div className='flex column align-center'>
-      <CreatePostForm/>
       <PostsNavbar setCurrPage={setCurrPage}/>
       
       {currPage === 'posts' ? (

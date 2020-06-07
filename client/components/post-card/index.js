@@ -47,7 +47,7 @@ const PostCard = ({ title, desc, location, tags, type }) => {
   }
 
   return (
-      <div  style={{backgroundColor: backgroundColorHelperFn((type=type))}} onClick={handleOpen} className='post-card flex space-between column'>
+      <div  style={{borderColor: backgroundColorHelperFn((type=type))}} onClick={handleOpen} className='post-card flex space-between column'>
         <header>
           <h1>{title}</h1>
         </header>

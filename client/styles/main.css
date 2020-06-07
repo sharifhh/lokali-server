@@ -63,7 +63,25 @@
     
 }
 
-.profile-test h2{
-    opacity: .3;
-    font-size: 25px;
+.step{
+    border:3px solid gray;
+    padding:10px;
+    margin:5px 0;
+}
+.step h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:18px;
+}
+
+.type-div{
+    border:1px solid;
+    font-size:30px;
+    height: 150px;;
+    
+}
+
+.type-container{
+    display:grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
 }

@@ -1,6 +1,5 @@
 @media screen and (max-width: 400px) {
   .post-card {
-    color: white;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border: 1px solid black;
     width: 90vw;

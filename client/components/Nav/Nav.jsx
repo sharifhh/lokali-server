@@ -10,18 +10,12 @@ const Nav = () => {
   let router = useRouter()
   return (
     <NavContainer className='flex'>
-      <img src='../../static/logo-small.png' alt='' />
-      {currLoggedUser ? (
-        <LinkContainer>
-          <NavLink path='/home' text='Home' />
-          <NavLink path='/profile' text='Profile' />
-          <NavLink path='/fevorites' text='Favorites' />
-        </LinkContainer>
-      ) : null}
-      <div className='flex align-center'>
-        <input type='text' />
-        <button>Logout</button>
-      </div>
+      <img width='140' src='../../static/logo-small.png' alt='' />
+      <div className='flex align-center'></div>
+
+      <a href='/publish'>
+        <button>Create Post</button>
+      </a>
     </NavContainer>
   )
 }
