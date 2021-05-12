@@ -12,7 +12,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "mongoose": "^5.9.14",
-    "nodemailer": "^6.4.6",
+    "nodemailer": "^6.4.16",
     "xoauth2": "^1.2.0"
   },
   "devDependencies": {
